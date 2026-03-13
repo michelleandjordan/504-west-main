@@ -198,10 +198,11 @@ body{
 
 /* PHOTO GRID */
 .photo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin:1.5rem 0 .5rem;overflow:hidden;}
-.photo-cell{position:relative;overflow:hidden;aspect-ratio:4/3;}
+.photo-cell{overflow:hidden;aspect-ratio:4/3;}
 .photo-cell img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(10%);transition:filter .3s ease;}
 .photo-cell:hover img{filter:grayscale(0%);}
-.photo-cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.7));padding:2rem .75rem .6rem;}
+.photo-cap{padding:.5rem 0 .25rem;background:transparent;}
+.photo-wrap{display:flex;flex-direction:column;}
 
 /* TIMELINE */
 .timeline{position:relative;padding-left:2.75rem;margin-top:2rem;}
@@ -643,8 +644,8 @@ body{
         <h2 class="t-heading" style="margin-top:.45rem;">Auburn's West Main Street Block</h2>
       </div>
       <div class="photo-grid" style="grid-template-columns:1fr 1fr;">
-        <div class="photo-cell"><img src="Auburn_WA_Main_Street_1920.jpg" alt="Auburn Main Street circa 1920s showing commercial block"><div class="photo-cap"><span class="t-mono" style="font-size:.52rem;color:rgba(255,255,255,.82);">Auburn Main Street &middot; 1920s</span></div></div>
-        <div class="photo-cell"><img src="Auburn_WA_Main_Street_May_22_1901.jpg" alt="Auburn Main Street May 22 1901 with rail crossing sign"><div class="photo-cap"><span class="t-mono" style="font-size:.52rem;color:rgba(255,255,255,.82);">Auburn Main Street &middot; May 22, 1901 &middot; Rail Crossing Foreground</span></div></div>
+        <div class="photo-wrap"><div class="photo-cell"><img src="Auburn_WA_Main_Street_1920.jpg" alt="Auburn Main Street circa 1920s showing commercial block"></div><div class="photo-cap"><span class="t-mono" style="font-size:.65rem;color:var(--text-secondary);">Auburn Main Street &middot; 1920s</span></div></div>
+        <div class="photo-wrap"><div class="photo-cell"><img src="Auburn_WA_Main_Street_May_22_1901.jpg" alt="Auburn Main Street May 22 1901 with rail crossing sign"></div><div class="photo-cap"><span class="t-mono" style="font-size:.65rem;color:var(--text-secondary);">Auburn Main Street &middot; May 22, 1901 &middot; Rail Crossing Foreground</span></div></div>
       </div>
       <p class="t-mono" style="margin-top:.55rem;color:var(--text-tertiary);">Historical images courtesy of published sources and the White River Valley Museum, Auburn, WA. All rights reserved by respective owners.</p>
     </div>
