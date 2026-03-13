@@ -387,7 +387,7 @@ body{
               <tr><td>Zoning</td><td class="hi">Commercial / Light Industrial / Residential</td></tr>
               <tr><td>Structure</td><td>Wood frame, post and pier foundation</td></tr>
               <tr><td>Parking</td><td class="hi">Three sides, West Main Street frontage, side street, rear lot</td></tr>
-              <tr><td>Commercial Vehicle Access</td><td class="hi">Semi-truck-capable parking confirmed, side lot in active informal use</td></tr>
+              <tr><td>Commercial Vehicle Access</td><td class="hi">Large truck delivery access confirmed, side lot in active informal use</td></tr>
               <tr><td>Loading</td><td>Small loading dock at rear of main building</td></tr>
               <tr><td>Annual Tax (2024)</td><td class="hi">$3,160</td></tr>
               <tr><td>Current Assessment</td><td>$250,200</td></tr>
@@ -739,13 +739,10 @@ function switchTab(name,btn){
 }
 function toggleAcc(btn){
   const body=btn.nextElementSibling;
-  const wasOpen=btn.classList.contains('open');
-  const scrollY=window.scrollY;
-  document.querySelectorAll('.acc-btn').forEach(b=>b.classList.remove('open'));
-  document.querySelectorAll('.acc-body').forEach(b=>b.classList.remove('open'));
-  if(!wasOpen){btn.classList.add('open');body.classList.add('open');}
+  const isOpen=btn.classList.contains('open');
+  if(isOpen){btn.classList.remove('open');body.classList.remove('open');}
+  else{btn.classList.add('open');body.classList.add('open');}
   btn.blur();
-  requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo(0,scrollY)));
 }
 function sharePage(){
   const data={title:'504 West Main Street \u00b7 Auburn, WA \u00b7 $550,000',text:'0.20-acre C/LI parcel, SR-167 corridor, large truck delivery access, three-bay high-clearance garage. Offered as-is.',url:window.location.href};
