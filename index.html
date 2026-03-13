@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>504 West Main Street, Auburn, WA | Commercial Investment Property</title>
+<meta name="description" content="0.2-acre C/LI parcel at 504 W Main Street, Auburn WA. SR-167 corridor, Sounder rail, semi-truck-capable parking, two-bay high-clearance garage. Offered as-is at $550,000.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+:root{
+  --white:#fff;--off-white:#f7f7f5;--border:#e2e2de;--border-strong:#c8c8c4;
+  --text-tertiary:#444442;--text-secondary:#1a1a18;--text-primary:#111110;
+  --ink:#111110;--accent:#b80000;--accent-hover:#960000;
+  --accent-light:#fdf0f0;--accent-mid:#e5b4b4;
+  --sticky-bar:#8a0000;--gray-text:#444442;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--white);color:var(--text-primary);
+  font-family:'Manrope',sans-serif;font-weight:400;font-size:15px;
+  line-height:1.6;letter-spacing:.005em;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+  padding-bottom:56px;
+}
+.t-display{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(1.55rem,4vw,2.45rem);line-height:1.1;letter-spacing:-.02em;color:var(--ink);}
+.t-heading{font-family:'Manrope',sans-serif;font-weight:700;font-size:clamp(1.1rem,2.2vw,1.45rem);line-height:1.25;letter-spacing:-.014em;color:var(--ink);}
+.t-subheading{font-family:'Manrope',sans-serif;font-weight:600;font-size:.94rem;line-height:1.4;letter-spacing:-.004em;color:var(--ink);}
+.t-body{font-family:'Manrope',sans-serif;font-weight:300;font-size:.9rem;line-height:1.82;letter-spacing:.008em;color:var(--ink);}
+.t-label{font-family:'Manrope',sans-serif;font-weight:700;font-size:.6rem;line-height:1.4;letter-spacing:.17em;text-transform:uppercase;color:var(--accent);}
+.t-mono{font-family:'Manrope',sans-serif;font-size:.62rem;font-weight:600;line-height:1.5;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);}
+.t-price{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(1.35rem,2.8vw,1.9rem);line-height:1;letter-spacing:-.025em;color:var(--ink);}
+
+/* TOPBAR */
+.topbar{background:var(--off-white);border-bottom:1px solid var(--border);padding:.55rem 2.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;}
+@media(max-width:600px){.topbar{flex-direction:column;gap:.15rem;text-align:center;padding:.6rem 1.25rem;}}
+
+/* HEADER */
+.site-header{background:var(--white);border-bottom:1px solid var(--border);padding:1.75rem 2.5rem 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.05);}
+.header-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:1.4rem;flex-wrap:wrap;gap:1rem;}
+.header-asis{display:block;margin-top:.28rem;}
+
+/* TABS */
+.tab-nav{display:flex;border-top:1px solid var(--border);margin-top:.2rem;}
+.tab-btn{font-family:'Manrope',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.88rem 2rem;border:none;background:transparent;color:var(--text-tertiary);cursor:pointer;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;position:relative;top:1px;}
+.tab-btn:hover{color:var(--ink);}.tab-btn.active{color:var(--ink);border-bottom-color:var(--accent);}
+
+/* PANELS */
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:panelIn .16s ease both;}
+@keyframes panelIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+
+/* HERO */
+.hero-strip{display:grid;grid-template-columns:1.65fr 1fr;height:455px;gap:2px;background:var(--border);overflow:hidden;}
+.hero-main{position:relative;overflow:hidden;}
+.hero-main img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+.hero-caption{position:absolute;bottom:0;left:0;right:0;padding:2.5rem 1.25rem .9rem;background:linear-gradient(transparent,rgba(0,0,0,.58));}
+.hero-side{display:grid;grid-template-rows:1fr 1fr;gap:2px;}
+.hero-side-cell{position:relative;overflow:hidden;}
+.hero-side-cell img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;}
+
+.hero-side-cell .hero-caption{padding:1.5rem 1rem .65rem;}
+
+/* METRICS */
+.metrics-bar{background:var(--white);display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.metric{padding:1.25rem 1.1rem;border-right:1px solid var(--border);text-align:center;}
+.metric:last-child{border-right:none;}
+.metric-val{font-family:'Manrope',sans-serif;font-weight:700;font-size:clamp(1rem,1.8vw,1.32rem);line-height:1;letter-spacing:-.014em;color:var(--ink);display:block;}
+.metric-val.ac{color:var(--accent);}
+.metric-lbl{font-family:'Manrope',sans-serif;font-weight:600;font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-tertiary);display:block;margin-top:.35rem;}
+
+/* LAYOUT */
+.content-wrap{max-width:1120px;margin:0 auto;padding:0 2.5rem;}
+.section{padding:3.25rem 0;border-bottom:1px solid var(--border);}
+.section:last-child{border-bottom:none;}
+.section-header{margin-bottom:1.75rem;}
+.section-header .t-label{display:block;margin-bottom:.5rem;}
+.section-intro{max-width:660px;margin-top:.65rem;}
+
+/* THESIS */
+.thesis{background:var(--off-white);padding:2.25rem 2.75rem;border-left:3px solid var(--accent);margin:.5rem 0 2rem;}
+.thesis p{font-family:'Manrope',sans-serif;font-weight:400;font-size:.96rem;line-height:1.87;letter-spacing:.008em;color:var(--text-primary);max-width:820px;}
+.thesis strong{color:var(--ink);font-weight:700;}
+
+/* GARAGE */
+.garage-feature{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);overflow:hidden;margin:1.5rem 0;}
+.garage-img{overflow:hidden;background:var(--off-white);min-height:320px;}
+.garage-img img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;}
+.garage-details{padding:2.25rem 2.5rem;background:var(--off-white);}
+.garage-details .t-label{display:block;margin-bottom:.5rem;}
+.garage-specs{list-style:none;margin-top:1.2rem;}
+.garage-specs li{display:flex;gap:.7rem;padding:.52rem 0;border-bottom:1px solid var(--border);font-family:'Manrope',sans-serif;font-weight:400;font-size:.855rem;letter-spacing:.005em;line-height:1.5;color:var(--text-primary);}
+.garage-specs li:last-child{border-bottom:none;}
+.chk{color:var(--accent);font-weight:700;flex-shrink:0;}
+
+/* ACCORDIONS */
+.accordion-group{margin-top:1.75rem;}
+.accordion-item{border:1px solid var(--border);margin-bottom:-1px;}
+.accordion-item:first-child{border-radius:2px 2px 0 0;}
+.accordion-item:last-child{border-radius:0 0 2px 2px;margin-bottom:0;}
+.acc-btn{width:100%;display:flex;justify-content:space-between;align-items:center;padding:1.05rem 1.5rem;background:var(--white);border:none;cursor:pointer;text-align:left;gap:1rem;transition:background .12s;}
+.acc-btn:hover,.acc-btn.open{background:var(--off-white);}
+.acc-btn-l{display:flex;align-items:center;gap:.85rem;}
+.acc-icon{width:28px;height:28px;background:#ececea;border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.acc-icon svg{width:14px;height:14px;}
+.acc-title{font-family:'Manrope',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);line-height:1.25;}
+.acc-sub{font-family:'Manrope',sans-serif;font-weight:400;font-size:.74rem;letter-spacing:.005em;text-transform:none;color:var(--text-tertiary);display:block;margin-top:.12rem;}
+.acc-caret{color:var(--accent);flex-shrink:0;transition:transform .2s ease;line-height:1;display:flex;align-items:center;gap:.4rem;}
+.acc-caret svg{width:13px;height:13px;}
+.acc-btn.open .acc-caret{transform:rotate(180deg);}
+.acc-body{display:none;padding:0 1.5rem 1.75rem;background:var(--off-white);border-top:1px solid var(--border);}
+.acc-body.open{display:block;}
+.acc-inner{padding-top:1.5rem;}
+
+/* DATA TABLE */
+.dt{width:100%;border-collapse:collapse;}
+.dt td{padding:.58rem .75rem .58rem 0;border-bottom:1px solid var(--border);font-family:'Manrope',sans-serif;font-size:.86rem;letter-spacing:.005em;vertical-align:top;line-height:1.55;}
+.dt tr:last-child td{border-bottom:none;}
+.dt td:first-child{color:var(--text-secondary);font-weight:400;width:40%;padding-right:1.5rem;}
+.dt td:last-child{color:var(--ink);font-weight:600;}
+.dt td.hi{color:var(--accent);font-weight:700;}
+
+/* DISCLOSURE */
+.disclosure{border:1px solid var(--accent-mid);background:var(--accent-light);padding:1.5rem 1.75rem;margin:1rem 0;}
+.disc-hdr{display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;}
+.disc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.32rem 2rem;}
+.disc-grid li{list-style:none;font-family:'Manrope',sans-serif;font-size:.85rem;font-weight:400;letter-spacing:.005em;line-height:1.55;color:var(--text-primary);display:flex;gap:.5rem;align-items:baseline;}
+.disc-grid li::before{content:'—';color:var(--accent);font-weight:700;flex-shrink:0;}
+.disc-note{margin-top:.9rem;font-family:'Manrope',sans-serif;font-size:.77rem;font-weight:300;font-style:italic;letter-spacing:.01em;color:var(--text-secondary);line-height:1.65;border-top:1px solid var(--accent-mid);padding-top:.75rem;}
+
+/* INCENTIVES */
+.inc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-top:.75rem;}
+.inc-cell{background:var(--white);padding:1.3rem 1.5rem;}
+.inc-cell .t-label{display:block;margin-bottom:.28rem;}
+.inc-val{font-family:'Manrope',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:-.014em;color:var(--ink);line-height:1.2;display:block;margin-bottom:.28rem;}
+.inc-desc{font-family:'Manrope',sans-serif;font-weight:300;font-size:.78rem;letter-spacing:.008em;line-height:1.65;color:var(--text-secondary);}
+
+/* MFTE EXPLAINER */
+.mfte-explainer{background:var(--off-white);border:1px solid var(--border);border-left:3px solid var(--accent);padding:1.5rem 2rem;margin-top:1.25rem;}
+.mfte-explainer h4{font-family:'Manrope',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);margin-bottom:.65rem;}
+.mfte-explainer p{font-family:'Manrope',sans-serif;font-weight:300;font-size:.85rem;letter-spacing:.008em;line-height:1.76;color:var(--text-secondary);}
+.mfte-explainer p+p{margin-top:.65rem;}
+.mfte-explainer strong{color:var(--ink);font-weight:700;}
+.mfte-caveat{margin-top:.75rem;font-family:'Manrope',sans-serif;font-size:.75rem;font-style:italic;font-weight:300;color:var(--text-tertiary);line-height:1.65;}
+
+/* TAX CREDIT HIGHLIGHT */
+.credit-highlight{background:var(--off-white);padding:2.5rem 2.75rem;border-left:4px solid var(--accent);margin:2rem 0;}
+.credit-highlight .t-label{color:var(--text-tertiary);display:block;margin-bottom:.5rem;}
+.credit-highlight h3{font-family:'Manrope',sans-serif;font-weight:700;font-size:clamp(1.1rem,2vw,1.35rem);letter-spacing:-.014em;color:var(--ink);line-height:1.25;margin-bottom:.9rem;}
+.credit-highlight p{font-family:'Manrope',sans-serif;font-weight:400;font-size:.9rem;letter-spacing:.008em;line-height:1.84;color:var(--text-secondary);max-width:800px;}
+.credit-highlight strong{color:var(--ink);font-weight:700;}
+.credit-stat-row{display:flex;gap:2.5rem;margin-top:1.5rem;flex-wrap:wrap;}
+.credit-stat{border-left:2px solid var(--accent);padding-left:1rem;}
+.credit-stat-val{font-family:'Manrope',sans-serif;font-weight:700;font-size:1.4rem;letter-spacing:-.02em;color:var(--ink);display:block;line-height:1;}
+.credit-stat-desc{font-family:'Manrope',sans-serif;font-weight:400;font-size:.72rem;letter-spacing:.01em;color:var(--text-secondary);display:block;margin-top:.25rem;line-height:1.48;}
+
+/* MAP */
+#investment-map{height:420px;width:100%;border:1px solid var(--border);margin-top:1.25rem;}
+.map-legend{display:flex;flex-wrap:wrap;gap:.9rem 1.6rem;padding:.7rem 1.25rem;background:var(--off-white);border:1px solid var(--border);border-top:none;}
+.leg-item{display:flex;align-items:center;gap:.42rem;}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+
+/* PROXIMITY */
+.prox-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-top:1.25rem;}
+.prox-cell{background:var(--white);padding:.9rem 1.2rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;}
+.prox-name{font-family:'Manrope',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.005em;color:var(--ink);line-height:1.3;}
+.prox-sub{font-family:'Manrope',sans-serif;font-weight:300;font-size:.72rem;letter-spacing:.008em;color:var(--text-tertiary);display:block;margin-top:.08rem;}
+.prox-dist{font-family:'Manrope',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:-.014em;color:var(--accent);white-space:nowrap;text-align:right;line-height:1.2;}
+.prox-mode{font-family:'Manrope',sans-serif;font-weight:600;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);display:block;text-align:right;margin-top:.12rem;}
+
+/* DEMAND */
+.demand-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-top:1rem;}
+.dem-cell{background:var(--white);padding:1.2rem 1.3rem;}
+.dem-name{font-family:'Manrope',sans-serif;font-weight:700;font-size:.86rem;letter-spacing:-.003em;color:var(--ink);display:block;margin-bottom:.32rem;line-height:1.3;}
+.dem-desc{font-family:'Manrope',sans-serif;font-weight:300;font-size:.76rem;letter-spacing:.008em;line-height:1.65;color:var(--text-secondary);}
+
+/* REG NOTE */
+.reg-note{margin-top:1rem;padding:1.1rem 1.35rem;background:var(--white);border:1px solid var(--border);}
+.reg-note p{font-family:'Manrope',sans-serif;font-weight:300;font-size:.82rem;letter-spacing:.008em;line-height:1.72;color:var(--text-secondary);}
+.reg-note strong{color:var(--ink);font-weight:700;}
+
+/* HISTORY */
+.history-hero{display:grid;grid-template-columns:1fr 1fr;height:340px;gap:2px;background:var(--border);overflow:hidden;}
+.hist-img{overflow:hidden;}
+.hist-img img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(12%);}
+.hist-intro{background:var(--off-white);padding:2.5rem 3rem;display:flex;flex-direction:column;justify-content:center;gap:.75rem;border-left:3px solid var(--accent);}
+.hist-intro .t-label{color:var(--accent);}
+.hist-intro h2{font-family:'Manrope',sans-serif;font-weight:700;font-size:clamp(1.1rem,2.3vw,1.45rem);line-height:1.28;letter-spacing:-.015em;color:var(--ink);}
+.hist-intro p{font-family:'Manrope',sans-serif;font-weight:400;font-size:.86rem;letter-spacing:.008em;line-height:1.78;color:var(--text-secondary);}
+
+/* PHOTO GRID */
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin:1.5rem 0 .5rem;overflow:hidden;}
+.photo-cell{position:relative;overflow:hidden;aspect-ratio:4/3;}
+.photo-cell img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(10%);transition:filter .3s ease;}
+.photo-cell:hover img{filter:grayscale(0%);}
+.photo-cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.7));padding:2rem .75rem .6rem;}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:2.75rem;margin-top:2rem;}
+.timeline::before{content:'';position:absolute;left:.75rem;top:.5rem;bottom:0;width:1px;background:var(--border);}
+.tl-item{position:relative;margin-bottom:2.5rem;}
+.tl-item::before{content:'';position:absolute;left:-2rem;top:.42rem;width:7px;height:7px;border-radius:50%;background:var(--accent);border:2px solid var(--white);outline:1px solid var(--accent);}
+.tl-date{font-family:'Manrope',sans-serif;font-weight:700;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.22rem;}
+.tl-title{font-family:'Manrope',sans-serif;font-weight:700;font-size:.96rem;letter-spacing:-.008em;line-height:1.3;color:var(--ink);margin-bottom:.42rem;}
+.tl-body{font-family:'Manrope',sans-serif;font-weight:300;font-size:.84rem;letter-spacing:.008em;line-height:1.82;color:var(--text-secondary);max-width:680px;}
+
+/* REG BOX */
+.reg-box{background:var(--off-white);border:1px solid var(--border);border-left:3px solid var(--accent);padding:1.75rem 2rem;margin:2rem 0;}
+.reg-box h3{font-family:'Manrope',sans-serif;font-weight:700;font-size:.93rem;letter-spacing:-.008em;color:var(--ink);margin-bottom:.6rem;}
+.reg-box p{font-family:'Manrope',sans-serif;font-weight:300;font-size:.86rem;letter-spacing:.008em;line-height:1.82;color:var(--text-secondary);}
+
+/* FOOTER */
+.site-footer{background:#272725;border-top:2px solid var(--accent);padding:2.75rem 2.5rem;}
+.footer-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.foot-addr{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-.02em;line-height:1.1;color:var(--white);margin-bottom:.3rem;}
+.foot-sub{display:block;margin-bottom:1.2rem;}
+.foot-price{font-family:'Manrope',sans-serif;font-weight:700;font-size:1.55rem;letter-spacing:-.025em;line-height:1;color:var(--white);}
+.foot-asis{font-family:'Manrope',sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);display:block;margin-top:.22rem;}
+.foot-terms-note{font-family:'Manrope',sans-serif;font-weight:300;font-size:.78rem;letter-spacing:.005em;line-height:1.6;color:rgba(255,255,255,.38);display:block;margin-top:.75rem;max-width:320px;}
+.foot-agent{border-left:1px solid rgba(255,255,255,.08);padding-left:3rem;}
+.foot-agent-lbl{font-family:'Manrope',sans-serif;font-weight:700;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:.75rem;}
+.foot-agent-name{font-family:'Manrope',sans-serif;font-weight:700;font-size:1.15rem;letter-spacing:-.015em;color:#c8c8c4;display:block;margin-bottom:.12rem;}
+.foot-agent-co{font-family:'Manrope',sans-serif;font-weight:400;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:1rem;}
+.foot-agent-contact a{display:block;font-family:'Manrope',sans-serif;font-weight:400;font-size:.86rem;letter-spacing:.005em;color:#8a8a86;text-decoration:none;margin-bottom:.28rem;transition:color .15s;}
+.foot-agent-contact a:hover{color:var(--white);}
+.foot-disclaimer{max-width:1120px;margin:1.75rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.06);font-family:'Manrope',sans-serif;font-size:.62rem;line-height:1.82;font-weight:300;letter-spacing:.02em;color:rgba(255,255,255,.18);}
+
+/* STICKY BAR */
+.sticky-bar{position:fixed;bottom:0;left:0;right:0;background:var(--sticky-bar);border-top:1px solid rgba(255,255,255,.12);z-index:200;display:flex;align-items:stretch;height:56px;box-shadow:0 -2px 16px rgba(0,0,0,.3);}
+.sticky-address{flex:1;display:flex;align-items:center;padding:0 1.75rem;gap:1rem;overflow:hidden;}
+.sticky-addr-text{font-family:'Manrope',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.005em;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sticky-price{font-family:'Manrope',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:-.01em;color:rgba(255,255,255,.62);white-space:nowrap;}
+.sticky-actions{display:flex;align-items:stretch;}
+.sticky-btn{display:flex;align-items:center;gap:.45rem;padding:0 1.4rem;border:none;background:transparent;border-left:1px solid rgba(255,255,255,.12);color:var(--white);cursor:pointer;text-decoration:none;font-family:'Manrope',sans-serif;font-weight:600;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;transition:background .15s;white-space:nowrap;}
+.sticky-btn:hover{background:rgba(255,255,255,.1);}
+.sticky-btn svg{width:15px;height:15px;flex-shrink:0;}
+@media(max-width:600px){.sticky-price{display:none;}.sticky-btn span.btn-label{display:none;}.sticky-btn{padding:0 1.1rem;}.sticky-address{padding:0 1rem;}}
+
+/* RESPONSIVE */
+@media(max-width:800px){
+  .site-header{padding:1.25rem 1.5rem 0;}
+  .content-wrap{padding:0 1.5rem;}
+  .hero-strip{grid-template-columns:1fr;height:auto;}
+  .hero-main{height:280px;}
+  .garage-feature{grid-template-columns:1fr;}
+  .garage-img{min-height:215px;}
+  .history-hero{grid-template-columns:1fr;height:auto;}
+  .hist-img{height:210px;}
+  .hist-intro{padding:1.75rem 1.5rem;}
+  .footer-inner{grid-template-columns:1fr;gap:2rem;}
+  .foot-agent{border-left:none;padding-left:0;border-top:1px solid rgba(255,255,255,.08);padding-top:2rem;}
+  .thesis,.credit-highlight{padding:1.75rem;}
+}
+@media(max-width:500px){
+  .metrics-bar{grid-template-columns:repeat(2,1fr);}
+
+  .tab-btn{padding:.75rem 1.1rem;font-size:.68rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="t-mono" style="color:var(--text-secondary);">King County Parcel 192105-9237 &middot; MLS# 2476580 &middot; Auburn, WA 98001</span>
+  <span class="t-mono" style="color:var(--accent);">Active Listing &middot; March 2026</span>
+</div>
+
+<header class="site-header">
+  <div class="header-top">
+    <div>
+      <div class="t-display">504 West Main Street <span style="color:var(--accent);">&middot;</span> Auburn, WA</div>
+      <div style="margin-top:.3rem;"><span class="t-mono" style="color:var(--ink);font-weight:600;">Commercial &middot; Light Industrial &middot; 0.20 Acres &middot; 8,710 SF &middot; 134 &times; 65 ft</span></div>
+    </div>
+    <div style="text-align:right;">
+      <div class="t-price">$550,000</div>
+      <span class="header-asis t-label" style="color:var(--ink);">Cash or Conventional</span>
+    </div>
+  </div>
+  <nav class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('investment',this)">Investment Overview</button>
+    <button class="tab-btn" onclick="switchTab('history',this)">Property History</button>
+  </nav>
+</header>
+
+<!-- INVESTMENT TAB -->
+<div id="tab-investment" class="tab-panel active">
+
+  <div class="hero-strip">
+    <div class="hero-main">
+      <img src="aerial.jpg" alt="Aerial view of 504 W Main Street Auburn WA and SR-167 corridor">
+      <div class="hero-caption"><span class="t-mono" style="color:rgba(255,255,255,.82);">504 W Main St &middot; BNSF Rail Corridor Left &middot; SR-167 Interchange Lower Right &middot; Industrial Corridor Lower Left</span></div>
+    </div>
+
+  </div>
+
+  <div class="metrics-bar">
+    <div class="metric"><span class="metric-val ac">$550K</span><span class="metric-lbl">Asking Price</span></div>
+    <div class="metric"><span class="metric-val">8,710</span><span class="metric-lbl">Lot Sq Ft</span></div>
+    <div class="metric"><span class="metric-val">134&times;65</span><span class="metric-lbl">Dimensions (ft)</span></div>
+    <div class="metric"><span class="metric-val">$3,160</span><span class="metric-lbl">Annual Taxes</span></div>
+    <div class="metric"><span class="metric-val">3</span><span class="metric-lbl">Parking Sides</span></div>
+    <div class="metric"><span class="metric-val">C / LI</span><span class="metric-lbl">Zoning</span></div>
+    <div class="metric"><span class="metric-val">0.2 mi</span><span class="metric-lbl">To Sounder Rail</span></div>
+    <div class="metric"><span class="metric-val">As-Is</span><span class="metric-lbl">Building Condition</span></div>
+  </div>
+
+  <div class="content-wrap">
+
+    <div class="section">
+      <div class="section-header">
+        <span class="t-label">Investment Thesis</span>
+        <h2 class="t-heading" style="margin-top:.45rem;">A Logistics-Positioned Parcel at a Below-Market Price</h2>
+      </div>
+      <div class="thesis">
+        <p>This is a <strong>land and infrastructure play</strong> on Auburn's SR-167 freight corridor, one of the Pacific Northwest's primary industrial arterials. The 0.20-acre parcel carries Commercial / Light Industrial zoning, three-sided vehicle access including confirmed semi-truck-capable capacity, a high-clearance two-bay garage operational today, and a small loading dock. Annual taxes of <strong>$3,160</strong> on a $550,000 ask reflect a King County assessment of $250,200, the gap between assessed and ask represents real upside for a buyer who understands this corridor. Comparable C/LI zoned parcels with equivalent SR-167 corridor access in Renton trade at a significant premium. Auburn's completed Environmental Impact Statement eliminates additional SEPA review, and city development fees have been frozen since 2009. <strong>The building is an additional asset, offered as-is.</strong></p>
+      </div>
+    </div>
+
+
+    <!-- ACCORDIONS -->et="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>504 West Main Street, Auburn, WA | Commercial Investment Property</title>
+<meta name="description" content="0.2-acre C/LI parcel at 504 W Main Street, Auburn WA. SR-167 corridor, Sounder rail, semi-truck-capable parking, two-bay high-clearance garage. Offered as-is at $550,000.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+:root{
+  --white:#fff;--off-white:#f7f7f5;--border:#e2e2de;--border-strong:#c8c8c4;
+  --text-tertiary:#444442;--text-secondary:#1a1a18;--text-primary:#111110;
+  --ink:#111110;--accent:#b80000;--accent-hover:#960000;
+  --accent-light:#fdf0f0;--accent-mid:#e5b4b4;
+  --sticky-bar:#8a0000;--gray-text:#444442;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--white);color:var(--text-primary);
+  font-family:'Manrope',sans-serif;font-weight:400;font-size:15px;
+  line-height:1.6;letter-spacing:.005em;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+  padding-bottom:56px;
+}
+.t-display{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(1.55rem,4vw,2.45rem);line-height:1.1;letter-spacing:-.02em;color:var(--ink);}
+.t-heading{font-family:'Manrope',sans-serif;font-weight:700;font-size:clamp(1.1rem,2.2vw,1.45rem);line-height:1.25;letter-spacing:-.014em;color:var(--ink);}
+.t-subheading{font-family:'Manrope',sans-serif;font-weight:600;font-size:.94rem;line-height:1.4;letter-spacing:-.004em;color:var(--ink);}
+.t-body{font-family:'Manrope',sans-serif;font-weight:300;font-size:.9rem;line-height:1.82;letter-spacing:.008em;color:var(--ink);}
+.t-label{font-family:'Manrope',sans-serif;font-weight:700;font-size:.6rem;line-height:1.4;letter-spacing:.17em;text-transform:uppercase;color:var(--accent);}
+.t-mono{font-family:'Manrope',sans-serif;font-size:.62rem;font-weight:600;line-height:1.5;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);}
+.t-price{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(1.35rem,2.8vw,1.9rem);line-height:1;letter-spacing:-.025em;color:var(--ink);}
+
+/* TOPBAR */
+.topbar{background:var(--off-white);border-bottom:1px solid var(--border);padding:.55rem 2.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;}
+@media(max-width:600px){.topbar{flex-direction:column;gap:.15rem;text-align:center;padding:.6rem 1.25rem;}}
+
+/* HEADER */
+.site-header{background:var(--white);border-bottom:1px solid var(--border);padding:1.75rem 2.5rem 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.05);}
+.header-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:1.4rem;flex-wrap:wrap;gap:1rem;}
+.header-asis{display:block;margin-top:.28rem;}
+
+/* TABS */
+.tab-nav{display:flex;border-top:1px solid var(--border);margin-top:.2rem;}
+.tab-btn{font-family:'Manrope',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.88rem 2rem;border:none;background:transparent;color:var(--text-tertiary);cursor:pointer;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;position:relative;top:1px;}
+.tab-btn:hover{color:var(--ink);}.tab-btn.active{color:var(--ink);border-bottom-color:var(--accent);}
+
+/* PANELS */
+.tab-panel{display:none;}.tab-panel.active{display:block;animation:panelIn .16s ease both;}
+@keyframes panelIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+
+/* HERO */
+.hero-strip{display:grid;grid-template-columns:1.65fr 1fr;height:455px;gap:2px;background:var(--border);overflow:hidden;}
+.hero-main{position:relative;overflow:hidden;}
+.hero-main img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+.hero-caption{position:absolute;bottom:0;left:0;right:0;padding:2.5rem 1.25rem .9rem;background:linear-gradient(transparent,rgba(0,0,0,.58));}
+.hero-side{display:grid;grid-template-rows:1fr 1fr;gap:2px;}
+.hero-side-cell{position:relative;overflow:hidden;}
+.hero-side-cell img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;}
+
+.hero-side-cell .hero-caption{padding:1.5rem 1rem .65rem;}
+
+/* METRICS */
+.metrics-bar{background:var(--white);display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.metric{padding:1.25rem 1.1rem;border-right:1px solid var(--border);text-align:center;}
+.metric:last-child{border-right:none;}
+.metric-val{font-family:'Manrope',sans-serif;font-weight:700;font-size:clamp(1rem,1.8vw,1.32rem);line-height:1;letter-spacing:-.014em;color:var(--ink);display:block;}
+.metric-val.ac{color:var(--accent);}
+.metric-lbl{font-family:'Manrope',sans-serif;font-weight:600;font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-tertiary);display:block;margin-top:.35rem;}
+
+/* LAYOUT */
+.content-wrap{max-width:1120px;margin:0 auto;padding:0 2.5rem;}
+.section{padding:3.25rem 0;border-bottom:1px solid var(--border);}
+.section:last-child{border-bottom:none;}
+.section-header{margin-bottom:1.75rem;}
+.section-header .t-label{display:block;margin-bottom:.5rem;}
+.section-intro{max-width:660px;margin-top:.65rem;}
+
+/* THESIS */
+.thesis{background:var(--off-white);padding:2.25rem 2.75rem;border-left:3px solid var(--accent);margin:.5rem 0 2rem;}
+.thesis p{font-family:'Manrope',sans-serif;font-weight:400;font-size:.96rem;line-height:1.87;letter-spacing:.008em;color:var(--text-primary);max-width:820px;}
+.thesis strong{color:var(--ink);font-weight:700;}
+
+/* GARAGE */
+.garage-feature{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);overflow:hidden;margin:1.5rem 0;}
+.garage-img{overflow:hidden;background:var(--off-white);min-height:320px;}
+.garage-img img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;}
+.garage-details{padding:2.25rem 2.5rem;background:var(--off-white);}
+.garage-details .t-label{display:block;margin-bottom:.5rem;}
+.garage-specs{list-style:none;margin-top:1.2rem;}
+.garage-specs li{display:flex;gap:.7rem;padding:.52rem 0;border-bottom:1px solid var(--border);font-family:'Manrope',sans-serif;font-weight:400;font-size:.855rem;letter-spacing:.005em;line-height:1.5;color:var(--text-primary);}
+.garage-specs li:last-child{border-bottom:none;}
+.chk{color:var(--accent);font-weight:700;flex-shrink:0;}
+
+/* ACCORDIONS */
+.accordion-group{margin-top:1.75rem;}
+.accordion-item{border:1px solid var(--border);margin-bottom:-1px;}
+.accordion-item:first-child{border-radius:2px 2px 0 0;}
+.accordion-item:last-child{border-radius:0 0 2px 2px;margin-bottom:0;}
+.acc-btn{width:100%;display:flex;justify-content:space-between;align-items:center;padding:1.05rem 1.5rem;background:var(--white);border:none;cursor:pointer;text-align:left;gap:1rem;transition:background .12s;}
+.acc-btn:hover,.acc-btn.open{background:var(--off-white);}
+.acc-btn-l{display:flex;align-items:center;gap:.85rem;}
+.acc-icon{width:28px;height:28px;background:#ececea;border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.acc-icon svg{width:14px;height:14px;}
+.acc-title{font-family:'Manrope',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);line-height:1.25;}
+.acc-sub{font-family:'Manrope',sans-serif;font-weight:400;font-size:.74rem;letter-spacing:.005em;text-transform:none;color:var(--text-tertiary);display:block;margin-top:.12rem;}
+.acc-caret{color:var(--accent);flex-shrink:0;transition:transform .2s ease;line-height:1;display:flex;align-items:center;gap:.4rem;}
+.acc-caret svg{width:13px;height:13px;}
+.acc-btn.open .acc-caret{transform:rotate(180deg);}
+.acc-body{display:none;padding:0 1.5rem 1.75rem;background:var(--off-white);border-top:1px solid var(--border);}
+.acc-body.open{display:block;}
+.acc-inner{padding-top:1.5rem;}
+
+/* DATA TABLE */
+.dt{width:100%;border-collapse:collapse;}
+.dt td{padding:.58rem .75rem .58rem 0;border-bottom:1px solid var(--border);font-family:'Manrope',sans-serif;font-size:.86rem;letter-spacing:.005em;vertical-align:top;line-height:1.55;}
+.dt tr:last-child td{border-bottom:none;}
+.dt td:first-child{color:var(--text-secondary);font-weight:400;width:40%;padding-right:1.5rem;}
+.dt td:last-child{color:var(--ink);font-weight:600;}
+.dt td.hi{color:var(--accent);font-weight:700;}
+
+/* DISCLOSURE */
+.disclosure{border:1px solid var(--accent-mid);background:var(--accent-light);padding:1.5rem 1.75rem;margin:1rem 0;}
+.disc-hdr{display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;}
+.disc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.32rem 2rem;}
+.disc-grid li{list-style:none;font-family:'Manrope',sans-serif;font-size:.85rem;font-weight:400;letter-spacing:.005em;line-height:1.55;color:var(--text-primary);display:flex;gap:.5rem;align-items:baseline;}
+.disc-grid li::before{content:'—';color:var(--accent);font-weight:700;flex-shrink:0;}
+.disc-note{margin-top:.9rem;font-family:'Manrope',sans-serif;font-size:.77rem;font-weight:300;font-style:italic;letter-spacing:.01em;color:var(--text-secondary);line-height:1.65;border-top:1px solid var(--accent-mid);padding-top:.75rem;}
+
+/* INCENTIVES */
+.inc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-top:.75rem;}
+.inc-cell{background:var(--white);padding:1.3rem 1.5rem;}
+.inc-cell .t-label{display:block;margin-bottom:.28rem;}
+.inc-val{font-family:'Manrope',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:-.014em;color:var(--ink);line-height:1.2;display:block;margin-bottom:.28rem;}
+.inc-desc{font-family:'Manrope',sans-serif;font-weight:300;font-size:.78rem;letter-spacing:.008em;line-height:1.65;color:var(--text-secondary);}
+
+/* MFTE EXPLAINER */
+.mfte-explainer{background:var(--off-white);border:1px solid var(--border);border-left:3px solid var(--accent);padding:1.5rem 2rem;margin-top:1.25rem;}
+.mfte-explainer h4{font-family:'Manrope',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);margin-bottom:.65rem;}
+.mfte-explainer p{font-family:'Manrope',sans-serif;font-weight:300;font-size:.85rem;letter-spacing:.008em;line-height:1.76;color:var(--text-secondary);}
+.mfte-explainer p+p{margin-top:.65rem;}
+.mfte-explainer strong{color:var(--ink);font-weight:700;}
+.mfte-caveat{margin-top:.75rem;font-family:'Manrope',sans-serif;font-size:.75rem;font-style:italic;font-weight:300;color:var(--text-tertiary);line-height:1.65;}
+
+/* TAX CREDIT HIGHLIGHT */
+.credit-highlight{background:var(--off-white);padding:2.5rem 2.75rem;border-left:4px solid var(--accent);margin:2rem 0;}
+.credit-highlight .t-label{color:var(--text-tertiary);display:block;margin-bottom:.5rem;}
+.credit-highlight h3{font-family:'Manrope',sans-serif;font-weight:700;font-size:clamp(1.1rem,2vw,1.35rem);letter-spacing:-.014em;color:var(--ink);line-height:1.25;margin-bottom:.9rem;}
+.credit-highlight p{font-family:'Manrope',sans-serif;font-weight:400;font-size:.9rem;letter-spacing:.008em;line-height:1.84;color:var(--text-secondary);max-width:800px;}
+.credit-highlight strong{color:var(--ink);font-weight:700;}
+.credit-stat-row{display:flex;gap:2.5rem;margin-top:1.5rem;flex-wrap:wrap;}
+.credit-stat{border-left:2px solid var(--accent);padding-left:1rem;}
+.credit-stat-val{font-family:'Manrope',sans-serif;font-weight:700;font-size:1.4rem;letter-spacing:-.02em;color:var(--ink);display:block;line-height:1;}
+.credit-stat-desc{font-family:'Manrope',sans-serif;font-weight:400;font-size:.72rem;letter-spacing:.01em;color:var(--text-secondary);display:block;margin-top:.25rem;line-height:1.48;}
+
+/* MAP */
+#investment-map{height:420px;width:100%;border:1px solid var(--border);margin-top:1.25rem;}
+.map-legend{display:flex;flex-wrap:wrap;gap:.9rem 1.6rem;padding:.7rem 1.25rem;background:var(--off-white);border:1px solid var(--border);border-top:none;}
+.leg-item{display:flex;align-items:center;gap:.42rem;}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+
+/* PROXIMITY */
+.prox-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-top:1.25rem;}
+.prox-cell{background:var(--white);padding:.9rem 1.2rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;}
+.prox-name{font-family:'Manrope',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.005em;color:var(--ink);line-height:1.3;}
+.prox-sub{font-family:'Manrope',sans-serif;font-weight:300;font-size:.72rem;letter-spacing:.008em;color:var(--text-tertiary);display:block;margin-top:.08rem;}
+.prox-dist{font-family:'Manrope',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:-.014em;color:var(--accent);white-space:nowrap;text-align:right;line-height:1.2;}
+.prox-mode{font-family:'Manrope',sans-serif;font-weight:600;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);display:block;text-align:right;margin-top:.12rem;}
+
+/* DEMAND */
+.demand-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-top:1rem;}
+.dem-cell{background:var(--white);padding:1.2rem 1.3rem;}
+.dem-name{font-family:'Manrope',sans-serif;font-weight:700;font-size:.86rem;letter-spacing:-.003em;color:var(--ink);display:block;margin-bottom:.32rem;line-height:1.3;}
+.dem-desc{font-family:'Manrope',sans-serif;font-weight:300;font-size:.76rem;letter-spacing:.008em;line-height:1.65;color:var(--text-secondary);}
+
+/* REG NOTE */
+.reg-note{margin-top:1rem;padding:1.1rem 1.35rem;background:var(--white);border:1px solid var(--border);}
+.reg-note p{font-family:'Manrope',sans-serif;font-weight:300;font-size:.82rem;letter-spacing:.008em;line-height:1.72;color:var(--text-secondary);}
+.reg-note strong{color:var(--ink);font-weight:700;}
+
+/* HISTORY */
+.history-hero{display:grid;grid-template-columns:1fr 1fr;height:340px;gap:2px;background:var(--border);overflow:hidden;}
+.hist-img{overflow:hidden;}
+.hist-img img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(12%);}
+.hist-intro{background:var(--off-white);padding:2.5rem 3rem;display:flex;flex-direction:column;justify-content:center;gap:.75rem;border-left:3px solid var(--accent);}
+.hist-intro .t-label{color:var(--accent);}
+.hist-intro h2{font-family:'Manrope',sans-serif;font-weight:700;font-size:clamp(1.1rem,2.3vw,1.45rem);line-height:1.28;letter-spacing:-.015em;color:var(--ink);}
+.hist-intro p{font-family:'Manrope',sans-serif;font-weight:400;font-size:.86rem;letter-spacing:.008em;line-height:1.78;color:var(--text-secondary);}
+
+/* PHOTO GRID */
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin:1.5rem 0 .5rem;overflow:hidden;}
+.photo-cell{position:relative;overflow:hidden;aspect-ratio:4/3;}
+.photo-cell img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(10%);transition:filter .3s ease;}
+.photo-cell:hover img{filter:grayscale(0%);}
+.photo-cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.7));padding:2rem .75rem .6rem;}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:2.75rem;margin-top:2rem;}
+.timeline::before{content:'';position:absolute;left:.75rem;top:.5rem;bottom:0;width:1px;background:var(--border);}
+.tl-item{position:relative;margin-bottom:2.5rem;}
+.tl-item::before{content:'';position:absolute;left:-2rem;top:.42rem;width:7px;height:7px;border-radius:50%;background:var(--accent);border:2px solid var(--white);outline:1px solid var(--accent);}
+.tl-date{font-family:'Manrope',sans-serif;font-weight:700;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.22rem;}
+.tl-title{font-family:'Manrope',sans-serif;font-weight:700;font-size:.96rem;letter-spacing:-.008em;line-height:1.3;color:var(--ink);margin-bottom:.42rem;}
+.tl-body{font-family:'Manrope',sans-serif;font-weight:300;font-size:.84rem;letter-spacing:.008em;line-height:1.82;color:var(--text-secondary);max-width:680px;}
+
+/* REG BOX */
+.reg-box{background:var(--off-white);border:1px solid var(--border);border-left:3px solid var(--accent);padding:1.75rem 2rem;margin:2rem 0;}
+.reg-box h3{font-family:'Manrope',sans-serif;font-weight:700;font-size:.93rem;letter-spacing:-.008em;color:var(--ink);margin-bottom:.6rem;}
+.reg-box p{font-family:'Manrope',sans-serif;font-weight:300;font-size:.86rem;letter-spacing:.008em;line-height:1.82;color:var(--text-secondary);}
+
+/* FOOTER */
+.site-footer{background:#272725;border-top:2px solid var(--accent);padding:2.75rem 2.5rem;}
+.footer-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.foot-addr{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-.02em;line-height:1.1;color:var(--white);margin-bottom:.3rem;}
+.foot-sub{display:block;margin-bottom:1.2rem;}
+.foot-price{font-family:'Manrope',sans-serif;font-weight:700;font-size:1.55rem;letter-spacing:-.025em;line-height:1;color:var(--white);}
+.foot-asis{font-family:'Manrope',sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);display:block;margin-top:.22rem;}
+.foot-terms-note{font-family:'Manrope',sans-serif;font-weight:300;font-size:.78rem;letter-spacing:.005em;line-height:1.6;color:rgba(255,255,255,.38);display:block;margin-top:.75rem;max-width:320px;}
+.foot-agent{border-left:1px solid rgba(255,255,255,.08);padding-left:3rem;}
+.foot-agent-lbl{font-family:'Manrope',sans-serif;font-weight:700;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:.75rem;}
+.foot-agent-name{font-family:'Manrope',sans-serif;font-weight:700;font-size:1.15rem;letter-spacing:-.015em;color:#c8c8c4;display:block;margin-bottom:.12rem;}
+.foot-agent-co{font-family:'Manrope',sans-serif;font-weight:400;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:1rem;}
+.foot-agent-contact a{display:block;font-family:'Manrope',sans-serif;font-weight:400;font-size:.86rem;letter-spacing:.005em;color:#8a8a86;text-decoration:none;margin-bottom:.28rem;transition:color .15s;}
+.foot-agent-contact a:hover{color:var(--white);}
+.foot-disclaimer{max-width:1120px;margin:1.75rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.06);font-family:'Manrope',sans-serif;font-size:.62rem;line-height:1.82;font-weight:300;letter-spacing:.02em;color:rgba(255,255,255,.18);}
+
+/* STICKY BAR */
+.sticky-bar{position:fixed;bottom:0;left:0;right:0;background:var(--sticky-bar);border-top:1px solid rgba(255,255,255,.12);z-index:200;display:flex;align-items:stretch;height:56px;box-shadow:0 -2px 16px rgba(0,0,0,.3);}
+.sticky-address{flex:1;display:flex;align-items:center;padding:0 1.75rem;gap:1rem;overflow:hidden;}
+.sticky-addr-text{font-family:'Manrope',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.005em;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sticky-price{font-family:'Manrope',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:-.01em;color:rgba(255,255,255,.62);white-space:nowrap;}
+.sticky-actions{display:flex;align-items:stretch;}
+.sticky-btn{display:flex;align-items:center;gap:.45rem;padding:0 1.4rem;border:none;background:transparent;border-left:1px solid rgba(255,255,255,.12);color:var(--white);cursor:pointer;text-decoration:none;font-family:'Manrope',sans-serif;font-weight:600;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;transition:background .15s;white-space:nowrap;}
+.sticky-btn:hover{background:rgba(255,255,255,.1);}
+.sticky-btn svg{width:15px;height:15px;flex-shrink:0;}
+@media(max-width:600px){.sticky-price{display:none;}.sticky-btn span.btn-label{display:none;}.sticky-btn{padding:0 1.1rem;}.sticky-address{padding:0 1rem;}}
+
+/* RESPONSIVE */
+@media(max-width:800px){
+  .site-header{padding:1.25rem 1.5rem 0;}
+  .content-wrap{padding:0 1.5rem;}
+  .hero-strip{grid-template-columns:1fr;height:auto;}
+  .hero-main{height:280px;}
+  .garage-feature{grid-template-columns:1fr;}
+  .garage-img{min-height:215px;}
+  .history-hero{grid-template-columns:1fr;height:auto;}
+  .hist-img{height:210px;}
+  .hist-intro{padding:1.75rem 1.5rem;}
+  .footer-inner{grid-template-columns:1fr;gap:2rem;}
+  .foot-agent{border-left:none;padding-left:0;border-top:1px solid rgba(255,255,255,.08);padding-top:2rem;}
+  .thesis,.credit-highlight{padding:1.75rem;}
+}
+@media(max-width:500px){
+  .metrics-bar{grid-template-columns:repeat(2,1fr);}
+
+  .tab-btn{padding:.75rem 1.1rem;font-size:.68rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="t-mono" style="color:var(--text-secondary);">King County Parcel 192105-9237 &middot; MLS# 2476580 &middot; Auburn, WA 98001</span>
+  <span class="t-mono" style="color:var(--accent);">Active Listing &middot; March 2026</span>
+</div>
+
+<header class="site-header">
+  <div class="header-top">
+    <div>
+      <div class="t-display">504 West Main Street <span style="color:var(--accent);">&middot;</span> Auburn, WA</div>
+      <div style="margin-top:.3rem;"><span class="t-mono" style="color:var(--ink);font-weight:600;">Commercial &middot; Light Industrial &middot; 0.20 Acres &middot; 8,710 SF &middot; 134 &times; 65 ft</span></div>
+    </div>
+    <div style="text-align:right;">
+      <div class="t-price">$550,000</div>
+      <span class="header-asis t-label" style="color:var(--ink);">Cash or Conventional</span>
+    </div>
+  </div>
+  <nav class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('investment',this)">Investment Overview</button>
+    <button class="tab-btn" onclick="switchTab('history',this)">Property History</button>
+  </nav>
+</header>
+
+<!-- INVESTMENT TAB -->
+<div id="tab-investment" class="tab-panel active">
+
+  <div class="hero-strip">
+    <div class="hero-main">
+      <img src="aerial.jpg" alt="Aerial view of 504 W Main Street Auburn WA and SR-167 corridor">
+      <div class="hero-caption"><span class="t-mono" style="color:rgba(255,255,255,.82);">504 W Main St &middot; BNSF Rail Corridor Left &middot; SR-167 Interchange Lower Right &middot; Industrial Corridor Lower Left</span></div>
+    </div>
+
+  </div>
+
+  <div class="metrics-bar">
+    <div class="metric"><span class="metric-val ac">$550K</span><span class="metric-lbl">Asking Price</span></div>
+    <div class="metric"><span class="metric-val">8,710</span><span class="metric-lbl">Lot Sq Ft</span></div>
+    <div class="metric"><span class="metric-val">134&times;65</span><span class="metric-lbl">Dimensions (ft)</span></div>
+    <div class="metric"><span class="metric-val">$3,160</span><span class="metric-lbl">Annual Taxes</span></div>
+    <div class="metric"><span class="metric-val">3</span><span class="metric-lbl">Parking Sides</span></div>
+    <div class="metric"><span class="metric-val">C / LI</span><span class="metric-lbl">Zoning</span></div>
+    <div class="metric"><span class="metric-val">0.2 mi</span><span class="metric-lbl">To Sounder Rail</span></div>
+    <div class="metric"><span class="metric-val">As-Is</span><span class="metric-lbl">Building Condition</span></div>
+  </div>
+
+  <div class="content-wrap">
+
+    <div class="section">
+      <div class="section-header">
+        <span class="t-label">Investment Thesis</span>
+        <h2 class="t-heading" style="margin-top:.45rem;">A Logistics-Positioned Parcel at a Below-Market Price</h2>
+      </div>
+      <div class="thesis">
+        <p>This is a <strong>land and infrastructure play</strong> on Auburn's SR-167 freight corridor, one of the Pacific Northwest's primary industrial arterials. The 0.20-acre parcel carries Commercial / Light Industrial zoning, three-sided vehicle access including confirmed semi-truck-capable capacity, a high-clearance two-bay garage operational today, and a small loading dock. Annual taxes of <strong>$3,160</strong> on a $550,000 ask reflect a King County assessment of $250,200, the gap between assessed and ask represents real upside for a buyer who understands this corridor. Comparable C/LI zoned parcels with equivalent SR-167 corridor access in Renton trade at a significant premium. Auburn's completed Environmental Impact Statement eliminates additional SEPA review, and city development fees have been frozen since 2009. <strong>The building is an additional asset, offered as-is.</strong></p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <span class="t-label">Primary Retained Asset</span>
+        <h2 class="t-heading" style="margin-top:.45rem;">The Detached Garage</h2>
+        <p class="t-body section-intro">Most redevelopment scenarios assume full or partial demolition of the main structure. The detached garage is a different asset, operational, high-clearance, and immediately usable for a trades business or storage operation without additional investment.</p>
+      </div>
+      <div class="garage-feature">
+        <div class="garage-img"><img src="Garage.jpg" alt="Garage exterior showing two full-width roll-up doors"></div>
+        <div class="garage-details">
+          <span class="t-label">Commercial Workshop / Storage</span>
+          <h3 class="t-subheading" style="margin-top:.38rem;margin-bottom:.7rem;">Two-Bay High-Clearance Garage</h3>
+          <p class="t-body">Historically used to store a boat, full-size truck, and multiple snowmobiles simultaneously. Ceiling height well exceeds standard residential clearance, suited for boats, RVs, equipment lifts, and oversized commercial vehicles. Operational today without improvement.</p>
+          <ul class="garage-specs">
+            <li><span class="chk">&#10003;</span> High open-beam ceiling, oversized vehicle clearance</li>
+            <li><span class="chk">&#10003;</span> Two full-width roll-up doors</li>
+            <li><span class="chk">&#10003;</span> Electrical service installed</li>
+            <li><span class="chk">&#10003;</span> Full-length workbench along one wall</li>
+            <li><span class="chk">&#10003;</span> Two barred security windows</li>
+            <li><span class="chk">&#10003;</span> Semi-truck-capable parking immediately adjacent</li>
+            <li><span class="chk">&#10003;</span> Small loading dock at rear of main building</li>
+            <li><span class="chk">&#10003;</span> Retainable under most redevelopment scenarios</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACCORDIONS -->
+    <div class="section">
+      <div class="section-header">
+        <span class="t-label">Property Details</span>
+        <h2 class="t-heading" style="margin-top:.45rem;">Site, Access &amp; Conditions</h2>
+      </div>
+      <div class="accordion-group">
+
+
+        <!-- GARAGE -->
+        <div class="accordion-item">
+          <button class="acc-btn" onclick="toggleAcc(this)">
+            <div class="acc-btn-l">
+              <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="22" height="13" rx="1"/><path d="M5 6V4a1 1 0 011-1h12a1 1 0 011 1v2"/><line x1="12" y1="12" x2="12" y2="16"/></svg></div>
+              <div><div class="acc-title">Detached Garage</div><span class="acc-sub">Two-bay high-clearance, roll-up doors, electricity, full-length workbench</span></div>
+            </div>
+            <span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="acc-body"><div class="acc-inner">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;">
+              <div>
+                <img src="Garage.jpg" alt="Two-bay detached garage with high-clearance roll-up doors" style="width:100%;height:240px;object-fit:cover;object-position:center;display:block;border:1px solid var(--border);">
+              </div>
+              <div>
+                <p class="t-body" style="margin-bottom:1rem;">Historically used to store a boat, full-size truck, and multiple snowmobiles simultaneously. Ceiling height well exceeds standard residential clearance. Operational today without improvement.</p>
+                <ul class="garage-specs">
+                  <li><span class="chk">&#10003;</span> High open-beam ceiling, oversized vehicle clearance</li>
+                  <li><span class="chk">&#10003;</span> Two full-width roll-up doors</li>
+                  <li><span class="chk">&#10003;</span> Electrical service installed</li>
+                  <li><span class="chk">&#10003;</span> Full-length workbench along one wall</li>
+                  <li><span class="chk">&#10003;</span> Two barred security windows</li>
+                  <li><span class="chk">&#10003;</span> Semi-truck-capable parking immediately adjacent</li>
+                  <li><span class="chk">&#10003;</span> Small loading dock at rear of main building</li>
+                  <li><span class="chk">&#10003;</span> Retainable under most redevelopment scenarios</li>
+                </ul>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+        <!-- SITE -->
+        <div class="accordion-item">
+          <button class="acc-btn" onclick="toggleAcc(this)">
+            <div class="acc-btn-l">
+              <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg></div>
+              <div><div class="acc-title">Site &amp; Zoning Details</div><span class="acc-sub">Parcel dimensions, zoning, parking, structural overview</span></div>
+            </div>
+            <span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="acc-body"><div class="acc-inner">
+            <table class="dt">
+              <tr><td>Parcel Number</td><td>192105-9237</td></tr>
+              <tr><td>Legal Description</td><td>Auburn W 65 ft of E 130 ft of N 134 ft of NW&frac14; of SE&frac14; Less St</td></tr>
+              <tr><td>Lot Size</td><td>8,710 SF &nbsp;/&nbsp; 0.20 Acres</td></tr>
+              <tr><td>Dimensions</td><td>134 ft &times; 65 ft</td></tr>
+              <tr><td>Zoning</td><td class="hi">Commercial / Light Industrial / Residential</td></tr>
+              <tr><td>Structure</td><td>Wood frame, post and pier foundation</td></tr>
+              <tr><td>Parking</td><td class="hi">Three sides, West Main Street frontage, side street, rear lot</td></tr>
+              <tr><td>Commercial Vehicle Access</td><td class="hi">Semi-truck-capable parking confirmed, side lot in active informal use</td></tr>
+              <tr><td>Loading</td><td>Small loading dock at rear of main building</td></tr>
+              <tr><td>Annual Tax (2024)</td><td class="hi">$3,160</td></tr>
+              <tr><td>Current Assessment</td><td>$250,200</td></tr>
+              <tr><td>Terms</td><td>Cash or Conventional &middot; Building offered as-is</td></tr>
+            </table>
+          </div></div>
+        </div>
+
+        <!-- MAIN BUILDING -->
+        <div class="accordion-item">
+          <button class="acc-btn" onclick="toggleAcc(this)">
+            <div class="acc-btn-l">
+              <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+              <div><div class="acc-title">Main Building</div><span class="acc-sub">Commercial ground floor, upper apartment, original materials</span></div>
+            </div>
+            <span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="acc-body"><div class="acc-inner">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;">
+              <div>
+                <p style="font-family:'Manrope',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:.7rem;">Ground Floor, Commercial</p>
+                <table class="dt">
+                  <tr><td>Use</td><td>Retail / light industrial / office</td></tr>
+                  <tr><td>Ceiling</td><td>Drop ceiling installed; original high wood plank ceiling intact above, undisturbed since original construction</td></tr>
+                  <tr><td>Flooring</td><td>Original fir floors beneath current surface</td></tr>
+                  <tr><td>Entry</td><td>West Main Street frontage</td></tr>
+                </table>
+              </div>
+              <div>
+                <p style="font-family:'Manrope',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:.7rem;">Upper Floor, Apartment</p>
+                <table class="dt">
+                  <tr><td>Layout</td><td>Kitchen, living area, bedroom, closet</td></tr>
+                  <tr><td>Bathroom</td><td>Located on ground floor</td></tr>
+                  <tr><td>Water</td><td>Not currently connected; infrastructure present</td></tr>
+                  <tr><td>Potential</td><td>Live/work, rental income, owner-operator</td></tr>
+                </table>
+                <div style="margin-top:1rem;"><img src="Upstairs.jpg" alt="Upper apartment vaulted ceiling and built-in storage" style="width:100%;max-height:220px;object-fit:cover;border:1px solid var(--border);display:block;"><span class="t-mono" style="display:block;margin-top:.38rem;color:var(--text-tertiary);">Upper apartment &middot; Vaulted ceiling &middot; Built-in storage</span></div>
+              </div>
+            </div>
+
+          </div></div>
+        </div>
+
+        <!-- FREIGHT -->
+        <div class="accordion-item">
+          <button class="acc-btn" onclick="toggleAcc(this)">
+            <div class="acc-btn-l">
+              <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+              <div><div class="acc-title">Freight Access &amp; Vehicle Logistics</div><span class="acc-sub">SR-167 corridor, semi-truck-capable access, airport proximity, bypass routing</span></div>
+            </div>
+            <span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="acc-body"><div class="acc-inner">
+            <p class="t-body" style="margin-bottom:1.25rem;">Located one block from SR-167, Auburn's primary freight arterial serving the Green River Valley industrial corridor, the densest concentration of warehouse and distribution infrastructure in the Pacific Northwest. Amazon, IKEA, REI, Costco, UPS, and FedEx regional distribution operations all run this corridor. The property currently serves as an informal rest stop for commercial drivers. Auburn Municipal Airport is approximately two miles away, providing general aviation access with a 5,000-foot runway.</p>
+            <table class="dt">
+              <tr><td>SR-167 Access</td><td class="hi">~1 block, primary Green River Valley freight arterial</td></tr>
+              <tr><td>Highway 18</td><td>Direct via SR-167 interchange</td></tr>
+              <tr><td>I-5</td><td>~5 miles via SR-167 or Hwy 18</td></tr>
+              <tr><td>Semi-truck-capable parking</td><td class="hi">Confirmed, side lot accommodates semi-trucks and dump trucks</td></tr>
+              <tr><td>Loading dock</td><td>Small dock at rear of main building, see photo below</td></tr>
+              <tr><td>Rail crossing bypass</td><td class="hi">Multiple routes bypass BNSF crossing and downtown congestion</td></tr>
+              <tr><td>Auburn Municipal Airport</td><td>~2 miles &middot; General aviation &middot; 5,000 ft runway</td></tr>
+              <tr><td>Port of Tacoma</td><td>~30 miles via I-5 South</td></tr>
+            </table>
+            <div style="margin-top:1.25rem;"><img src="Back_of_Building.jpg" alt="Rear of building showing small loading dock" style="width:100%;max-height:240px;object-fit:cover;border:1px solid var(--border);display:block;"><span class="t-mono" style="display:block;margin-top:.42rem;color:var(--text-tertiary);">Rear of building &middot; Small loading dock</span></div>
+          </div></div>
+        </div>
+
+        <!-- COMMUTER -->
+        <div class="accordion-item">
+          <button class="acc-btn" onclick="toggleAcc(this)">
+            <div class="acc-btn-l">
+              <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6v6"/><path d="M15 6v6"/><path d="M2 12h19.6"/><path d="M18 18h3s.5-1.7.8-4.6c.3-2.7-.7-5.4-1.8-6.4A2 2 0 0 0 18 6h-1"/><path d="M4 6H3a2 2 0 0 0-1.4.6C.5 7.6-.5 10.3.2 13c.3 2.9.8 4.6.8 4.6H4"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></div>
+              <div><div class="acc-title">Commuter Access, Rail, Trail &amp; Road</div><span class="acc-sub">Sounder rail, Interurban Trail (bike/motorcycle), major highway connections</span></div>
+            </div>
+            <span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="acc-body"><div class="acc-inner">
+            <p class="t-body" style="margin-bottom:1.25rem;">The property is within walking distance of Auburn Sounder Station, providing direct daily rail service to Seattle (~33 minutes) and Tacoma (~20 minutes). The Interurban Trail, a fully paved multi-use regional path running the length of the Green River Valley, connects Auburn directly to Renton and beyond, serving bicycle and motorcycle commuters as an alternative to SR-167. Together these corridors position the site as viable for transit-oriented residential or mixed-use development with genuine commuter appeal.</p>
+            <table class="dt">
+              <tr><td>Sounder Rail</td><td class="hi">~0.2 mi walk, Seattle ~33 min, Tacoma ~20 min</td></tr>
+              <tr><td>Interurban Trail</td><td class="hi">Bike / motorcycle corridor, connects Auburn to Renton, runs Green River Valley</td></tr>
+              <tr><td>SR-167</td><td>~1 block, direct freeway access north to Seattle, south to Tacoma</td></tr>
+              <tr><td>Highway 18</td><td>Via SR-167 interchange, connects to I-90 and I-5</td></tr>
+              <tr><td>Seattle CBD</td><td>~20 mi via rail or highway &middot; ~33 min Sounder</td></tr>
+              <tr><td>Tacoma CBD</td><td>~35 mi via SR-167 / I-5</td></tr>
+              <tr><td>SEA-TAC Airport</td><td>~12 mi via SR-167 North &middot; ~15 min off-peak</td></tr>
+            </table>
+          </div></div>
+        </div>
+
+        <!-- AS-IS -->
+        <div class="accordion-item">
+          <button class="acc-btn" onclick="toggleAcc(this)">
+            <div class="acc-btn-l">
+              <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+              <div><div class="acc-title">Known Conditions, Building Offered As-Is</div><span class="acc-sub">Full disclosure of deferred maintenance and known deficiencies</span></div>
+            </div>
+            <span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="acc-body"><div class="acc-inner">
+            <div class="disclosure">
+              <div class="disc-hdr"><span class="t-label">Seller Disclosure, Known Material Conditions</span></div>
+              <ul class="disc-grid">
+                <li>Roof requires replacement, active leaks present</li>
+                <li>Post and pier foundation</li>
+                <li>Electrical panel outdated, not updated</li>
+                <li>Interior stairs require rebuilding</li>
+                <li>Water service not currently connected, infrastructure present</li>
+                <li>Several windows boarded, vandalism damage</li>
+                <li>Upper apartment bathroom located on ground floor</li>
+              </ul>
+              <p class="disc-note">Property offered strictly as-is. Seller makes no representations beyond the above. Buyers are advised to conduct independent inspection and due diligence prior to offer. Most redevelopment scenarios assume full or partial demolition of the main structure, with the detached garage retained as a separate operational asset.</p>
+            </div>
+            <p class="t-body" style="margin-top:.85rem;">Original fir floors and high wood plank ceilings remain intact above the existing drop ceiling, undisturbed since original construction. Original moldings and banisters are present throughout. These elements carry value for buyers pursuing adaptive reuse or historic rehabilitation tax credits.</p>
+          </div></div>
+        </div>
+
+        <!-- INCENTIVES -->
+        <div class="accordion-item">
+          <button class="acc-btn" onclick="toggleAcc(this)">
+            <div class="acc-btn-l">
+              <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+              <div><div class="acc-title">City of Auburn Development Incentives</div><span class="acc-sub">MFTE tax exemption, fee reductions, regulatory certainty</span></div>
+            </div>
+            <span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="acc-body"><div class="acc-inner">
+            <div class="inc-grid">
+              <div class="inc-cell"><span class="t-label">MFTE Property Tax Exemption</span><span class="inc-val">8 or 12 Years</span><span class="inc-desc">Washington State Multifamily Housing Tax Exemption (MFTE), locally administered by Auburn. Exempts the value of newly constructed residential improvements, not the land, for qualifying multifamily projects of 4+ units.</span></div>
+              <div class="inc-cell"><span class="t-label">Construction Sales Tax Refund</span><span class="inc-val">Up to $100,000</span><span class="inc-desc">Direct reduction in build cost for eligible projects.</span></div>
+              <div class="inc-cell"><span class="t-label">Development Fee Reduction</span><span class="inc-val">Up to 50%</span><span class="inc-desc">Reduction in land use, building permit, and other fees for qualifying downtown projects.</span></div>
+              <div class="inc-cell"><span class="t-label">Fee Schedule Frozen</span><span class="inc-val">Since 2009</span><span class="inc-desc">Building, engineering, and land use fees unchanged. Developer certainty unavailable in most King County cities.</span></div>
+              <div class="inc-cell"><span class="t-label">Fee Payment Timing</span><span class="inc-val">At CO Issuance</span><span class="inc-desc">Fees payable at Certificate of Occupancy, not at permit issuance. Improved cash flow during construction.</span></div>
+              <div class="inc-cell"><span class="t-label">SEPA Environmental Review</span><span class="inc-val">Complete</span><span class="inc-desc">Downtown EIS completed, no additional environmental review required for qualifying projects.</span></div>
+            </div>
+            <div class="mfte-explainer">
+              <h4>Understanding the MFTE, What It Actually Covers</h4>
+              <p>Washington's Multifamily Housing Tax Exemption (MFTE) is a state-authorized program under RCW 84.14, administered locally by cities including Auburn. The <strong>8-year exemption</strong> requires no affordable housing component, any market-rate multifamily project of four or more residential units may qualify. The <strong>12-year exemption</strong> requires that at least 20% of units be affordable to low- and moderate-income households.</p>
+              <p>The exemption applies to the value of newly constructed <strong>residential improvements only</strong>, not the land, not retail portions, not existing structures. For mixed-use development, residential use must make up at least 50% of the space. Auburn requires audited expense records as part of its approval process.</p>
+              <p>Note: A 2021 legislative update (SB 5287) restricts the 8-year market-rate exemption in certain transit-dense areas. Given the proximity to Sounder rail, a buyer pursuing MFTE should verify eligibility with Auburn Community Development before acquisition.</p>
+              <p class="mfte-caveat">MFTE eligibility is project-specific and subject to city approval. Verify current program terms directly with the City of Auburn Community Development Department prior to acquisition.</p>
+            </div>
+            <div class="reg-note">
+              <p><strong>Regulatory context:</strong> The Puget Sound Regional Council designates Auburn's downtown as a Regional Urban Center, enabling higher density and land use intensity. The Auburn City Council has approved design standards for the Downtown Urban Center. The city's Comprehensive Downtown Parking Management Plan (2014) anticipated increased density, infrastructure built ahead of demand.</p>
+            </div>
+          </div></div>
+        </div>
+
+        <!-- DEMAND -->
+        <div class="accordion-item">
+          <button class="acc-btn" onclick="toggleAcc(this)">
+            <div class="acc-btn-l">
+              <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+              <div><div class="acc-title">Regional Demand Drivers</div><span class="acc-sub">Employment anchors, transit, retail and recreation within the trade area</span></div>
+            </div>
+            <span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="acc-body"><div class="acc-inner">
+            <p class="t-body" style="margin-bottom:1.1rem;">Auburn's immediate trade area generates sustained employment, retail traffic, and residential demand from several significant anchors, supporting the case for multifamily, mixed-use, light industrial, or commercial redevelopment.</p>
+            <div class="demand-grid">
+              <div class="dem-cell"><span class="dem-name">Muckleshoot Casino</span><span class="dem-desc">One of King County's largest private employers. Generates sustained workforce housing demand within the immediate area.</span></div>
+              <div class="dem-cell"><span class="dem-name">Sounder Commuter Rail</span><span class="dem-desc">Walking distance (~0.2 mi). Daily Seattle and Tacoma service. Transit-oriented development carries financing and zoning advantages.</span></div>
+              <div class="dem-cell"><span class="dem-name">Outlet Collection</span><span class="dem-desc">Regional retail destination establishing Auburn as a Puget Sound draw and generating consistent consumer traffic.</span></div>
+              <div class="dem-cell"><span class="dem-name">Emerald Downs</span><span class="dem-desc">Active thoroughbred racing venue contributing to the area's hospitality and regional destination economy.</span></div>
+              <div class="dem-cell"><span class="dem-name">Auburn Regional Medical</span><span class="dem-desc">Major medical complex driving healthcare employment and associated residential demand, visible in aerial.</span></div>
+              <div class="dem-cell"><span class="dem-name">Auburn Municipal Airport</span><span class="dem-desc">~2 miles &middot; General aviation &middot; 5,000 ft runway. Serves private pilots, charter, and light cargo operators.</span></div>
+              <div class="dem-cell"><span class="dem-name">Interurban Trail</span><span class="dem-desc">Multi-use regional trail connecting Auburn to Renton, supports walkability and cyclist commute metrics relevant to residential financing.</span></div>
+            </div>
+          </div></div>
+        </div>
+
+        <!-- HISTORIC TAX CREDIT -->
+        <div class="accordion-item">
+          <button class="acc-btn" onclick="toggleAcc(this)">
+            <div class="acc-btn-l">
+              <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+              <div><div class="acc-title">Historic Preservation, Federal Tax Credit Opportunity</div><span class="acc-sub">20% Federal Historic Tax Credit, grant eligibility, National Register candidacy</span></div>
+            </div>
+            <span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="acc-body"><div class="acc-inner">
+            <div class="credit-highlight">
+              <span class="t-label">Federal Historic Tax Credit</span>
+              <h3>20% Credit on Qualified Rehabilitation Expenditures</h3>
+              <p>This building's documented provenance positions it as a viable candidate for the National Register of Historic Places, unlocking one of the most powerful rehabilitation incentives in the federal tax code. The <strong>20% Federal Historic Tax Credit</strong> applies directly to qualified rehabilitation expenditures and is in addition to any state or local preservation grants. For a buyer pursuing adaptive reuse, the credit represents a significant reduction in net rehabilitation cost.</p>
+              <div class="credit-stat-row">
+                <div class="credit-stat"><span class="credit-stat-val">20%</span><span class="credit-stat-desc">Federal credit on qualified<br>rehabilitation costs</span></div>
+                <div class="credit-stat"><span class="credit-stat-val">113 yr</span><span class="credit-stat-desc">Continuous documented<br>occupation, census verified</span></div>
+                <div class="credit-stat"><span class="credit-stat-desc" style="font-size:.8rem;border:none;padding:0;max-width:220px;line-height:1.6;">Physical evidence: 1942 grocery receipt, 1955 newspapers, antique bottles, tools, and historical photographs recovered from beneath the building</span></div>
+              </div>
+            </div>
+            <table class="dt" style="margin-top:.5rem;">
+              <tr><td>Federal Historic Tax Credit</td><td class="hi">20% credit on qualified rehabilitation expenditures</td></tr>
+              <tr><td>Washington State Credit</td><td>Additional state-level credits may apply, verify with preservation consultant</td></tr>
+              <tr><td>Grant eligibility</td><td>State and local preservation grants available upon listing</td></tr>
+              <tr><td>Archival resource</td><td>White River Valley Museum, Auburn, holds relevant local historical materials</td></tr>
+              <tr><td>Physical evidence</td><td>1942 grocery receipt, 1955 newspapers, antique bottles, tools, and historical photographs recovered from beneath the building</td></tr>
+            </table>
+            <p class="t-body" style="margin-top:.85rem;font-style:italic;">Historic designation eligibility requires independent professional assessment. Engage a preservation architect or SHPO consultant prior to acquisition if pursuing this avenue.</p>
+          </div></div>
+        </div>
+
+      </div><!-- /accordion-group -->
+    </div><!-- /section -->
+
+    <!-- MAP SECTION -->
+    <div class="section">
+      <div class="section-header">
+        <span class="t-label">Location &amp; Corridor Position</span>
+        <h2 class="t-heading" style="margin-top:.45rem;">Midpoint of the Puget Sound Freight &amp; Commuter Corridor</h2>
+        <p class="t-body section-intro">Auburn sits at the convergence of SR-167, Highway 18, and I-5, equidistant between Seattle and Tacoma. The BNSF main line runs through downtown. Sounder commuter rail and the Interurban Trail both provide direct access to the greater corridor from within walking distance of the parcel.</p>
+      </div>
+      <div id="investment-map"></div>
+      <div class="map-legend">
+        <div class="leg-item"><div class="leg-dot" style="background:#b8300f;"></div><span class="t-mono">504 W Main St</span></div>
+        <div class="leg-item"><div class="leg-dot" style="background:#1a5fb4;"></div><span class="t-mono">Sounder Station</span></div>
+        <div class="leg-item"><div class="leg-dot" style="background:#2a7a3a;"></div><span class="t-mono">SR-167 / Hwy 18</span></div>
+        <div class="leg-item"><div class="leg-dot" style="background:#7a2a8a;"></div><span class="t-mono">Regional Destinations</span></div>
+        <div class="leg-item"><div class="leg-dot" style="background:#b07a18;"></div><span class="t-mono">Airport</span></div>
+        <div class="leg-item" style="margin-left:auto;"><span class="t-mono">Click markers for details</span></div>
+      </div>
+      <div class="prox-grid" style="margin-top:1.5rem;">
+        <div class="prox-cell"><div><span class="prox-name">Auburn Sounder Station</span><span class="prox-sub">Seattle ~33 min &middot; Tacoma ~20 min</span></div><div><span class="prox-dist">0.2 mi</span><span class="prox-mode">Walking</span></div></div>
+        <div class="prox-cell"><div><span class="prox-name">Interurban Trail</span><span class="prox-sub">Bike / motorcycle, connects to Renton corridor</span></div><div><span class="prox-dist">Adjacent</span><span class="prox-mode">Trail</span></div></div>
+        <div class="prox-cell"><div><span class="prox-name">SR-167 On-Ramp</span><span class="prox-sub">Green River Valley freight arterial</span></div><div><span class="prox-dist">~3 min</span><span class="prox-mode">Drive</span></div></div>
+        <div class="prox-cell"><div><span class="prox-name">Seattle CBD</span><span class="prox-sub">Via Sounder or SR-167 / I-5</span></div><div><span class="prox-dist">~20 mi</span><span class="prox-mode">Rail / Highway</span></div></div>
+        <div class="prox-cell"><div><span class="prox-name">Tacoma CBD</span><span class="prox-sub">Via SR-167 / I-5 South</span></div><div><span class="prox-dist">~35 mi</span><span class="prox-mode">Highway</span></div></div>
+        <div class="prox-cell"><div><span class="prox-name">SEA-TAC Airport</span><span class="prox-sub">Via SR-167 North</span></div><div><span class="prox-dist">~12 mi</span><span class="prox-mode">~15 min off-peak</span></div></div>
+        <div class="prox-cell"><div><span class="prox-name">Auburn Municipal Airport</span><span class="prox-sub">General aviation &middot; 5,000 ft runway</span></div><div><span class="prox-dist">~2 mi</span><span class="prox-mode">Drive</span></div></div>
+        <div class="prox-cell"><div><span class="prox-name">Muckleshoot Casino</span><span class="prox-sub">King County's largest private employer</span></div><div><span class="prox-dist">~3 mi</span><span class="prox-mode">Drive</span></div></div>
+        <div class="prox-cell"><div><span class="prox-name">Port of Tacoma</span><span class="prox-sub">Primary import / export facility</span></div><div><span class="prox-dist">~30 mi</span><span class="prox-mode">I-5 South</span></div></div>
+        <div class="prox-cell"><div><span class="prox-name">Renton / Boeing Corridor</span><span class="prox-sub">Comparison market, commands a premium</span></div><div><span class="prox-dist">~14 mi</span><span class="prox-mode">SR-167 North</span></div></div>
+      </div>
+    </div>
+
+  </div><!-- /content-wrap -->
+</div><!-- /investment tab -->
+
+
+<!-- HISTORY TAB -->
+<div id="tab-history" class="tab-panel">
+  <div class="history-hero">
+    <div class="hist-img"><img src="Auburn_WA_Main_Street_1920.jpg" alt="Auburn Main Street circa 1920s"></div>
+    <div class="hist-intro">
+      <span class="t-label">Built 1911 &middot; 113 Years Continuous Use</span>
+      <h2>A Building That Survived Everything Auburn Threw at It</h2>
+      <p>Railroad booms and busts. The Depression. WWII internment of Japanese valley farmers. The decline of downtown retail. Eleven decades of unbroken occupation, without structural failure.</p>
+    </div>
+  </div>
+  <div class="content-wrap">
+    <div class="section">
+      <div class="section-header">
+        <span class="t-label">Historical Photographs</span>
+        <h2 class="t-heading" style="margin-top:.45rem;">Auburn's West Main Street Block</h2>
+      </div>
+      <div class="photo-grid" style="grid-template-columns:1fr 1fr;">
+        <div class="photo-cell"><img src="Auburn_WA_Main_Street_1920.jpg" alt="Auburn Main Street circa 1920s showing commercial block"><div class="photo-cap"><span class="t-mono" style="font-size:.52rem;color:rgba(255,255,255,.82);">Auburn Main Street &middot; ca. 1920s</span></div></div>
+        <div class="photo-cell"><img src="Auburn_WA_Main_Street_May_22_1901.jpg" alt="Auburn Main Street May 22 1901 with rail crossing sign"><div class="photo-cap"><span class="t-mono" style="font-size:.52rem;color:rgba(255,255,255,.82);">Auburn Main Street &middot; May 22, 1901 &middot; Rail Crossing Foreground</span></div></div>
+      </div>
+      <p class="t-mono" style="margin-top:.55rem;color:var(--text-tertiary);">Historical images courtesy of published sources and the White River Valley Museum, Auburn, WA. All rights reserved by respective owners.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <span class="t-label">Timeline</span>
+        <h2 class="t-heading" style="margin-top:.45rem;">113 Years at 504 West Main</h2>
+      </div>
+      <div class="timeline">
+        <div class="tl-item"><span class="tl-date">1886&ndash;1910</span><div class="tl-title">Railroad Boom &amp; The Naming of Auburn</div><p class="tl-body">The Northern Pacific Railroad reached Auburn in 1883. By 1891 the town incorporated as "Slaughter", renamed Auburn in 1893 after Oliver Goldsmith's poem. West Main Street developed as the working commercial spine serving constant rail crews, freight workers, and valley farmers. The Skaggs family, whose cash-and-carry model eventually became Safeway, operated in this corridor. Local merchant and photographer Les Rasmus documented the era.</p></div>
+        <div class="tl-item"><span class="tl-date">1911</span><div class="tl-title">Building Constructed</div><p class="tl-body">Part of the final wave of downtown wood-frame commercial construction between 1910 and 1913. Original fir floors, high wood plank ceilings, and moldings were installed, all remaining intact today, concealed beneath later improvements. The Nuzum family, prominent Auburn real estate developers, held the block-long parcel before subdivision.</p></div>
+        <div class="tl-item"><span class="tl-date">1920s&ndash;1930s</span><div class="tl-title">Lodging Era, Railroad Workers</div><p class="tl-body">The 1930 Census confirms the building operated as a rooming house for single men employed by the Northern Pacific Railroad. The Depression years were hard on Auburn's merchant community, though rail traffic sustained the block's basic economy.</p></div>
+        <div class="tl-item"><span class="tl-date">1940s</span><div class="tl-title">Community Grocery</div><p class="tl-body">The building became the central community grocery for East and West Main residents. A 1942 grocery receipt recovered from within the building confirms active WWII-era operation. Japanese immigrant farmers from the surrounding valley, who supplied the store with produce, were forcibly relocated to internment camps in 1942, permanently reshaping Auburn's agricultural economy.</p></div>
+        <div class="tl-item"><span class="tl-date">1940&ndash;1954</span><div class="tl-title">Jones Family, From Renter to Owner</div><p class="tl-body">The 1940 Census lists Frederick Jones as head of household at 504 West Main, renting at $20/month, occupation listed as retail salesman. By the 1950 Census he is recorded as owner and proprietor. The block became informally known as the Jones Block, a designation that survives in local historical photographs to this day.</p></div>
+        <div class="tl-item"><span class="tl-date">Undated Discovery</span><div class="tl-title">Artifacts of Continuous Occupation</div><p class="tl-body">Antique bottles, old tools, and historical photographs were recovered from beneath the building, physical evidence of its continuous use across multiple generations. Newspapers dated 1955 were found within the structure. A 1942 grocery receipt confirms active wartime operation.</p></div>
+        <div class="tl-item"><span class="tl-date">1968&ndash;2017</span><div class="tl-title">House of Vacuums, 49 Years</div><p class="tl-body">The building's longest single-use chapter. The large red-lettered sign became a neighborhood landmark along West Main for nearly half a century. Continuous commercial operation through 2017 confirms sustained utility as a working storefront across Auburn's most significant commercial transitions.</p></div>
+        <div class="tl-item"><span class="tl-date">Now</span><div class="tl-title">Offered for Redevelopment</div><p class="tl-body">The building is offered as-is. Primary value is the parcel, the corridor position, and the retained garage. For a buyer with preservation intent, the physical and archival record supports National Register candidacy and access to federal Historic Tax Credits.</p></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <span class="t-label">Preservation Opportunity</span>
+        <h2 class="t-heading" style="margin-top:.45rem;">National Register Candidacy</h2>
+      </div>
+      <div class="reg-box">
+        <h3>Federal Historic Tax Credit, 20% of Qualified Rehabilitation Expenditures</h3>
+        <p>This building's documented provenance, census-verified ownership chain, physical artifact recovery, 113 years of continuous use, and 1911 construction within a documented commercial wave, positions it as a viable National Register of Historic Places candidate. Listing unlocks the federal 20% Historic Tax Credit on qualified rehabilitation expenditures, state preservation grants, and potential marketing value for hospitality, residential, or professional conversion. The White River Valley Museum in Auburn holds archival materials relevant to any nomination process.</p>
+      </div>
+      <div style="margin-top:1.75rem;">
+        <img src="Garage.jpg" alt="Exterior of 504 West Main Street showing House of Vacuums sign" style="width:100%;max-height:400px;object-fit:cover;border:1px solid var(--border);display:block;">
+        <span class="t-mono" style="display:block;margin-top:.48rem;">504 West Main Street &middot; Auburn, WA &middot; House of Vacuums Signage &middot; SR-167 Corridor Visible</span>
+      </div>
+    </div>
+  </div>
+</div><!-- /history tab -->
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="foot-addr">504 West Main Street</div>
+      <span class="foot-sub t-mono">Auburn, WA 98001 &middot; King County &middot; MLS# 2476580</span>
+      <div class="foot-price">$550,000</div>
+      <span class="foot-asis" style="color:rgba(255,255,255,.7);">Cash or Conventional &middot; Building Offered As-Is</span>
+      <span class="foot-terms-note">The building is an additional asset, offered as-is with full seller disclosure. Primary value is the parcel, zoning, and corridor position. The detached garage is operational today.</span>
+    </div>
+    <div class="foot-agent">
+      <div style="display:flex;align-items:center;gap:1.25rem;margin-bottom:1.25rem;">
+        <img src="Henry_DeCherney.png" alt="Henry DeCherney" style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:center top;border:2px solid rgba(255,255,255,.15);flex-shrink:0;">
+        <img src="simpliHOM-logo.png" alt="simpliHOM" style="height:48px;width:auto;opacity:.85;">
+      </div>
+      <span class="foot-agent-lbl">Listing Agent</span>
+      <span class="foot-agent-name">Henry DeCherney</span>
+      <span class="foot-agent-co">simpliHOM Residential &middot; Lic 21033585</span>
+      <div class="foot-agent-contact">
+        <a href="tel:+12067694883">(206) 769-4883</a>
+        <a href="mailto:henrydecherney@simplihom.com">henrydecherney@simplihom.com</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-disclaimer">All information is believed accurate but not guaranteed. Buyers are advised to independently verify all property details, zoning, and development incentive eligibility prior to offer. Development incentive information sourced from City of Auburn and Washington State public records and subject to change. MFTE eligibility is project-specific and must be confirmed directly with the City of Auburn Community Development Department. Historic designation eligibility requires independent professional assessment. Property offered strictly as-is with no representations beyond disclosed conditions. This page is for informational purposes only and does not constitute a legal offer or representation. Listings courtesy of NWMLS. &copy; 2026 All rights reserved.</div>
+</footer>
+
+
+<!-- STICKY BAR -->
+<div class="sticky-bar">
+  <div class="sticky-address">
+    <span class="sticky-addr-text">504 West Main Street &middot; Auburn, WA</span>
+    <span class="sticky-price">$550,000 As-Is</span>
+  </div>
+  <div class="sticky-actions">
+    <a href="tel:+12067694883" class="sticky-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .84h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      <span class="btn-label">Call</span>
+    </a>
+    <a href="/cdn-cgi/l/email-protection#3d5558534f4459585e55584f5358447d4e54504d5154555250135e5250" class="sticky-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <span class="btn-label">Text</span>
+    </a>
+    <button class="sticky-btn" onclick="sharePage()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      <span class="btn-label">Share</span>
+    </button>
+  </div>
+</div>
+
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function switchTab(name,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  btn.classList.add('active');
+  if(name==='investment'&&!window._mapDone)loadLeafletThenMap();
+}
+function toggleAcc(btn){
+  const body=btn.nextElementSibling;
+  const wasOpen=btn.classList.contains('open');
+  document.querySelectorAll('.acc-btn').forEach(b=>b.classList.remove('open'));
+  document.querySelectorAll('.acc-body').forEach(b=>b.classList.remove('open'));
+  if(!wasOpen){btn.classList.add('open');body.classList.add('open');}
+}
+function sharePage(){
+  const data={title:'504 West Main Street \u00b7 Auburn, WA \u00b7 $550,000',text:'0.20-acre C/LI parcel, SR-167 corridor, semi-truck-capable parking, two-bay high-clearance garage. Offered as-is.',url:window.location.href};
+  if(navigator.share){navigator.share(data).catch(()=>fallbackShare());}
+  else{fallbackShare();}
+}
+function fallbackShare(){
+  navigator.clipboard.writeText(window.location.href).then(()=>{
+    const btn=document.querySelector('.sticky-btn:last-child .btn-label');
+    if(btn){const orig=btn.textContent;btn.textContent='Copied!';setTimeout(()=>btn.textContent=orig,1800);}
+  }).catch(()=>{});
+}
+function loadLeafletThenMap(){
+  if(window.L){initMap();return;}
+  const s=document.createElement('script');
+  s.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+  s.onload=initMap;
+  s.onerror=function(){document.getElementById('investment-map').innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#f6f6f4;border:1px solid #e2e2de;"><span style="font-family:IBM Plex Mono,monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:#aaa;">Map requires internet connection</span></div>';};
+  document.head.appendChild(s);
+}
+window._mapDone=false;
+function initMap(){
+  if(window._mapDone||!window.L)return;
+  window._mapDone=true;
+  const map=L.map('investment-map',{center:[47.307,-122.218],zoom:13,zoomControl:true,scrollWheelZoom:false});
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'\u00a9 <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+    maxZoom:19
+  }).addTo(map);
+  const ic=(col,sz)=>L.divIcon({className:'',html:'<div style="width:'+sz+'px;height:'+sz+'px;background:'+col+';border:2px solid #fff;border-radius:50%;box-shadow:0 1px 5px rgba(0,0,0,.3);"></div>',iconSize:[sz,sz],iconAnchor:[sz/2,sz/2]});
+  const pop=(t,s)=>'<strong style="font-family:\'Manrope\',sans-serif;font-size:.88rem;">'+t+'</strong><br><span style="font-family:\'Manrope\',sans-serif;font-size:.76rem;color:#555;">'+s+'</span>';
+  L.marker([47.3073,-122.2295],{icon:ic('#b8300f',20)}).addTo(map).bindPopup(pop('504 W Main St','$550,000 \u00b7 As-Is \u00b7 0.20 Acres \u00b7 C/LI'));
+  L.marker([47.3065,-122.2268],{icon:ic('#1a5fb4',14)}).addTo(map).bindPopup(pop('Auburn Sounder Station','~0.2 mi walk \u00b7 Seattle ~33 min \u00b7 Tacoma ~20 min'));
+  L.marker([47.294,-122.218],{icon:ic('#2a7a3a',14)}).addTo(map).bindPopup(pop('SR-167 / Hwy 18 Interchange','Green River Valley freight corridor'));
+  L.marker([47.3282,-122.2265],{icon:ic('#b07a18',14)}).addTo(map).bindPopup(pop('Auburn Municipal Airport','General aviation \u00b7 5,000 ft runway \u00b7 ~2 mi'));
+  L.marker([47.284,-122.185],{icon:ic('#7a2a8a',13)}).addTo(map).bindPopup(pop('Muckleshoot Casino','King County\'s largest private employer'));
+  L.marker([47.3205,-122.246],{icon:ic('#7a2a8a',13)}).addTo(map).bindPopup(pop('Emerald Downs','Thoroughbred racing \u00b7 Regional draw'));
+  L.marker([47.3148,-122.2165],{icon:ic('#7a2a8a',13)}).addTo(map).bindPopup(pop('The Outlet Collection','Regional retail destination'));
+  L.marker([47.3128,-122.2068],{icon:ic('#7a2a8a',13)}).addTo(map).bindPopup(pop('Auburn Regional Medical Plaza','Major healthcare employment anchor'));
+  L.polyline([[47.278,-122.2268],[47.29,-122.2268],[47.3065,-122.2268],[47.32,-122.2268],[47.34,-122.2268]],
+    {color:'#555',weight:2,dashArray:'6 4',opacity:.4}).addTo(map).bindPopup
