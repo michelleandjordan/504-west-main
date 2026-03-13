@@ -103,6 +103,8 @@ body{
 .accordion-item{border:1px solid var(--border);margin-bottom:-1px;}
 .accordion-item:first-child{border-radius:2px 2px 0 0;}
 .accordion-item:last-child{border-radius:0 0 2px 2px;margin-bottom:0;}
+.acc-btn:focus{outline:none;}
+.acc-btn:focus{outline:none;scroll-margin-top:0;}
 .acc-btn{width:100%;display:flex;justify-content:space-between;align-items:center;padding:1.05rem 1.5rem;background:var(--white);border:none;cursor:pointer;text-align:left;gap:1rem;transition:background .12s;}
 .acc-btn:hover,.acc-btn.open{background:var(--off-white);}
 .acc-btn-l{display:flex;align-items:center;gap:.85rem;}
@@ -741,6 +743,7 @@ function toggleAcc(btn){
   document.querySelectorAll('.acc-btn').forEach(b=>b.classList.remove('open'));
   document.querySelectorAll('.acc-body').forEach(b=>b.classList.remove('open'));
   if(!wasOpen){btn.classList.add('open');body.classList.add('open');}
+  btn.blur();
 }
 function sharePage(){
   const data={title:'504 West Main Street \u00b7 Auburn, WA \u00b7 $550,000',text:'0.20-acre C/LI parcel, SR-167 corridor, large truck delivery access, three-bay high-clearance garage. Offered as-is.',url:window.location.href};
