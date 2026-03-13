@@ -743,9 +743,9 @@ function toggleAcc(btn){
   const scrollY=window.scrollY;
   document.querySelectorAll('.acc-btn').forEach(b=>b.classList.remove('open'));
   document.querySelectorAll('.acc-body').forEach(b=>b.classList.remove('open'));
-  window.scrollTo(0,scrollY);
   if(!wasOpen){btn.classList.add('open');body.classList.add('open');}
   btn.blur();
+  requestAnimationFrame(()=>window.scrollTo(0,scrollY));
 }
 function sharePage(){
   const data={title:'504 West Main Street \u00b7 Auburn, WA \u00b7 $550,000',text:'0.20-acre C/LI parcel, SR-167 corridor, large truck delivery access, three-bay high-clearance garage. Offered as-is.',url:window.location.href};
