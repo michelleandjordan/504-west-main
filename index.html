@@ -47,9 +47,9 @@ body{
 .header-asis{display:block;margin-top:.28rem;}
 
 /* TABS */
-.tab-nav{display:flex;border-top:1px solid var(--border);margin-top:.2rem;}
-.tab-btn{font-family:'Manrope',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.88rem 2rem;border:none;background:transparent;color:var(--text-tertiary);cursor:pointer;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;position:relative;top:1px;}
-.tab-btn:hover{color:var(--ink);}.tab-btn.active{color:var(--ink);border-bottom-color:var(--accent);}
+.tab-btn{font-family:'Manrope',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.88rem 2rem;border:none;background:transparent;color:var(--text-tertiary);cursor:pointer;border-bottom:2px solid transparent;transition:color .15s,border-color .15s,background .15s;position:relative;top:1px;}
+.tab-btn:hover{color:var(--ink);}
+.tab-btn.active{color:var(--white);background:var(--accent);border-bottom-color:var(--accent);}
 
 /* PANELS */
 .tab-panel{display:none;}.tab-panel.active{display:block;animation:panelIn .16s ease both;}
@@ -112,8 +112,9 @@ body{
 .acc-icon svg{width:14px;height:14px;}
 .acc-title{font-family:'Manrope',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);line-height:1.25;}
 .acc-sub{font-family:'Manrope',sans-serif;font-weight:400;font-size:.74rem;letter-spacing:.005em;text-transform:none;color:var(--text-tertiary);display:block;margin-top:.12rem;}
-.acc-caret{color:var(--accent);flex-shrink:0;transition:transform .2s ease;line-height:1;display:flex;align-items:center;gap:.4rem;}
-.acc-caret svg{width:13px;height:13px;}
+.acc-caret{color:var(--accent);flex-shrink:0;transition:transform .2s ease;line-height:1;display:flex;align-items:center;gap:.4rem;font-family:'Manrope',sans-serif;font-weight:700;font-size:.6rem;letter-spacing:.1em;}
+.acc-caret svg{width:18px;height:18px;}
+.acc-caret .caret-label{text-transform:uppercase;}
 .acc-btn.open .acc-caret{transform:rotate(180deg);}
 .acc-body{display:none;padding:0 1.5rem 1.75rem;background:var(--off-white);border-top:1px solid var(--border);overflow:hidden;}
 .acc-body.open{display:block;}
@@ -346,7 +347,7 @@ body{
               <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="22" height="13" rx="1"/><path d="M5 6V4a1 1 0 011-1h12a1 1 0 011 1v2"/><line x1="12" y1="12" x2="12" y2="16"/></svg></div>
               <div><div class="acc-title">Detached Garage</div><span class="acc-sub">Three-bay high-clearance, two roll-up doors, electricity, full-length workbench</span></div>
             </div>
-            <span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            <span class="acc-caret"><span class="caret-label">More</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="acc-body"><div class="acc-inner">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;" class="garage-inner">
@@ -379,7 +380,7 @@ body{
               <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg></div>
               <div><div class="acc-title">Site &amp; Zoning Details</div><span class="acc-sub">Parcel dimensions, zoning, parking, structural overview</span></div>
             </div>
-            <span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            <span class="acc-caret"><span class="caret-label">More</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="acc-body"><div class="acc-inner">
             <div class="dt-wrap"><table class="dt">
@@ -406,7 +407,7 @@ body{
               <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
               <div><div class="acc-title">Main Building</div><span class="acc-sub">Commercial ground floor, upper apartment, original materials</span></div>
             </div>
-            <span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            <span class="acc-caret"><span class="caret-label">More</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="acc-body"><div class="acc-inner">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;" class="main-bldg-grid">
@@ -440,7 +441,7 @@ body{
               <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
               <div><div class="acc-title">Freight Access &amp; Vehicle Logistics</div><span class="acc-sub">SR-167 corridor, large truck delivery access, airport proximity, bypass routing</span></div>
             </div>
-            <span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            <span class="acc-caret"><span class="caret-label">More</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="acc-body"><div class="acc-inner">
             <p class="t-body" style="margin-bottom:1.25rem;">Located one block from SR-167, Auburn's primary freight arterial serving the Green River Valley industrial corridor, the densest concentration of warehouse and distribution infrastructure in the Pacific Northwest. Amazon, IKEA, REI, Costco, UPS, and FedEx regional distribution operations all run this corridor. The property currently serves as an informal rest stop for commercial drivers. Auburn Municipal Airport is approximately two miles away, providing general aviation access with a 5,000-foot runway.</p>
@@ -465,7 +466,7 @@ body{
               <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
               <div><div class="acc-title">Known Conditions, Building Offered As-Is</div><span class="acc-sub">Full disclosure of deferred maintenance and known deficiencies</span></div>
             </div>
-            <span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            <span class="acc-caret"><span class="caret-label">More</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="acc-body"><div class="acc-inner">
             <div class="disclosure">
@@ -489,7 +490,7 @@ body{
               <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
               <div><div class="acc-title">City of Auburn Development Incentives</div><span class="acc-sub">MFTE tax exemption, fee reductions, regulatory certainty</span></div>
             </div>
-            <span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            <span class="acc-caret"><span class="caret-label">More</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="acc-body"><div class="acc-inner">
             <div class="inc-grid">
@@ -520,7 +521,7 @@ body{
               <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
               <div><div class="acc-title">Regional Demand Drivers</div><span class="acc-sub">Employment anchors, transit, retail and recreation within the trade area</span></div>
             </div>
-            <span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            <span class="acc-caret"><span class="caret-label">More</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="acc-body"><div class="acc-inner">
             <p class="t-body" style="margin-bottom:1.1rem;">Auburn's immediate trade area generates sustained employment, retail traffic, and residential demand from several significant anchors, supporting the case for multifamily, mixed-use, light industrial, or commercial redevelopment.</p>
@@ -543,7 +544,7 @@ body{
               <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
               <div><div class="acc-title">Historic Preservation, Federal Tax Credit Opportunity</div><span class="acc-sub">20% Federal Historic Tax Credit, grant eligibility, National Register candidacy</span></div>
             </div>
-            <span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            <span class="acc-caret"><span class="caret-label">More</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="acc-body"><div class="acc-inner">
             <div class="credit-highlight">
@@ -574,7 +575,7 @@ body{
               <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6v6"/><path d="M15 6v6"/><path d="M2 12h19.6"/><path d="M18 18h3s.5-1.7.8-4.6c.3-2.7-.7-5.4-1.8-6.4A2 2 0 0 0 18 6h-1"/><path d="M4 6H3a2 2 0 0 0-1.4.6C.5 7.6-.5 10.3.2 13c.3 2.9.8 4.6.8 4.6H4"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></div>
               <div><div class="acc-title">Commuter Access, Rail, Trail &amp; Road</div><span class="acc-sub">Sounder rail, Interurban Trail (bike/motorcycle), major highway connections</span></div>
             </div>
-            <span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            <span class="acc-caret"><span class="caret-label">More</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="acc-body"><div class="acc-inner">
             <p class="t-body" style="margin-bottom:1.25rem;">The property is within walking distance of Auburn Sounder Station, providing direct daily rail service to Seattle (~33 minutes) and Tacoma (~20 minutes). The Interurban Trail, a fully paved multi-use regional path running the length of the Green River Valley, connects Auburn directly to Renton and beyond, serving bicycle and motorcycle commuters as an alternative to SR-167. Together these corridors position the site as viable for transit-oriented residential or mixed-use development with genuine commuter appeal.</p>
@@ -752,8 +753,16 @@ function switchTab(name,btn){
 function toggleAcc(btn){
   const body=btn.nextElementSibling;
   const isOpen=btn.classList.contains('open');
-  if(isOpen){btn.classList.remove('open');body.classList.remove('open');}
-  else{btn.classList.add('open');body.classList.add('open');}
+  const label=btn.querySelector('.caret-label');
+  if(isOpen){
+    btn.classList.remove('open');
+    body.classList.remove('open');
+    if(label)label.textContent='More';
+  } else {
+    btn.classList.add('open');
+    body.classList.add('open');
+    if(label)label.textContent='Less';
+  }
   btn.blur();
 }
 function sharePage(){
