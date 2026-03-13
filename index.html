@@ -204,8 +204,8 @@ body{
 .photo-cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.7));padding:2rem .75rem .6rem;}
 
 /* TIMELINE */
-.timeline{position:relative;padding-left:2.75rem;margin-top:2rem;}
-.timeline::before{content:'';position:absolute;left:.75rem;top:.5rem;bottom:0;width:1px;background:var(--border);}
+.timeline{position:relative;padding-left:2.75rem;margin-top:2rem;overflow:hidden;}
+.tl-body{font-family:'Manrope',sans-serif;font-weight:300;font-size:.84rem;letter-spacing:.008em;line-height:1.82;color:var(--text-secondary);max-width:100%;}.timeline::before{content:'';position:absolute;left:.75rem;top:.5rem;bottom:0;width:1px;background:var(--border);}
 .tl-item{position:relative;margin-bottom:2.5rem;}
 .tl-item::before{content:'';position:absolute;left:-2rem;top:.42rem;width:7px;height:7px;border-radius:50%;background:var(--accent);border:2px solid var(--white);outline:1px solid var(--accent);}
 .tl-date{font-family:'Manrope',sans-serif;font-weight:700;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.22rem;}
@@ -220,7 +220,7 @@ body{
 /* FOOTER */
 .site-footer{background:#272725;border-top:2px solid var(--accent);padding:2.75rem 2.5rem;}
 .footer-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
-.foot-addr{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-.02em;line-height:1.1;color:var(--white);margin-bottom:.3rem;}
+.foot-addr{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:-.02em;line-height:1.1;color:var(--white);margin-bottom:.3rem;}
 .foot-sub{display:block;margin-bottom:1.2rem;color:rgba(255,255,255,.85);font-weight:600;}
 .foot-price{font-family:'Manrope',sans-serif;font-weight:700;font-size:1.55rem;letter-spacing:-.025em;line-height:1;color:var(--white);}
 .foot-asis{font-family:'Manrope',sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);display:block;margin-top:.22rem;}
@@ -647,7 +647,7 @@ body{
         <div><img src="Auburn_WA_Main_Street_1920.jpg" alt="Auburn Main Street circa 1920s showing commercial block" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border:1px solid var(--border);filter:grayscale(10%);"><span class="t-mono" style="display:block;margin-top:.35rem;font-size:.6rem;color:var(--text-secondary);">Auburn Main Street &middot; 1920s</span></div>
         <div><img src="Auburn_WA_Main_Street_May_22_1901.jpg" alt="Auburn Main Street May 22 1901 with rail crossing sign" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border:1px solid var(--border);filter:grayscale(10%);"><span class="t-mono" style="display:block;margin-top:.35rem;font-size:.6rem;color:var(--text-secondary);">Auburn Main Street &middot; May 22, 1901 &middot; Rail Crossing Foreground</span></div>
       </div>
-      <p class="t-mono" style="margin-top:.55rem;color:var(--text-tertiary);">Historical images courtesy of published sources and the White River Valley Museum, Auburn, WA. All rights reserved by respective owners.</p>
+      <p class="t-mono" style="margin-top:.2rem;color:var(--text-tertiary);">Historical images courtesy of published sources and the White River Valley Museum, Auburn, WA. All rights reserved by respective owners.</p>
     </div>
 
     <div class="section">
