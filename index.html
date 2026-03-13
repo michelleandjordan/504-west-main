@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>504 West Main Street, Auburn, WA | Commercial Investment Property</title>
-<meta name="description" content="0.2-acre C/LI parcel at 504 W Main Street, Auburn WA. SR-167 corridor, Sounder rail, semi-truck-capable parking, two-bay high-clearance garage. Offered as-is at $550,000.">
+<meta name="description" content="0.2-acre C/LI parcel at 504 W Main Street, Auburn WA. SR-167 corridor, Sounder rail, large truck delivery access, three-bay high-clearance garage. Offered as-is at $550,000.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -247,6 +247,8 @@ body{
   .hero-main{height:280px;}
   .garage-feature{grid-template-columns:1fr;}
   .garage-img{min-height:360px;}
+  .garage-inner{grid-template-columns:1fr !important;}
+  .garage-img-wrap img{height:320px !important;}
   .history-hero{grid-template-columns:1fr;height:auto;}
   .hist-img{height:210px;}
   .hist-intro{padding:1.75rem 1.5rem;}
@@ -315,7 +317,7 @@ body{
         <h2 class="t-heading" style="margin-top:.45rem;">A Logistics-Positioned Parcel at a Below-Market Price</h2>
       </div>
       <div class="thesis">
-        <p>This is a <strong>land and infrastructure play</strong> on Auburn's SR-167 freight corridor, one of the Pacific Northwest's primary industrial arterials. The 0.20-acre parcel carries Commercial / Light Industrial zoning, three-sided vehicle access including confirmed semi-truck-capable capacity, a high-clearance two-bay garage operational today, and a small loading dock. Annual taxes of <strong>$3,160</strong> on a $550,000 ask reflect a King County assessment of $250,200, the gap between assessed and ask represents real upside for a buyer who understands this corridor. Comparable C/LI zoned parcels with equivalent SR-167 corridor access in Renton trade at a significant premium. Auburn's completed Environmental Impact Statement eliminates additional SEPA review, and city development fees have been frozen since 2009. <strong>The building is an additional asset, offered as-is.</strong></p>
+        <p>This is a <strong>land and infrastructure play</strong> on Auburn's SR-167 freight corridor, one of the Pacific Northwest's primary industrial arterials. The 0.20-acre parcel carries Commercial / Light Industrial zoning, three-sided vehicle access including large truck delivery capacity, a high-clearance three-bay garage operational today, and a small loading dock. Annual taxes of <strong>$3,160</strong> on a $550,000 ask reflect a King County assessment of $250,200, the gap between assessed and ask represents real upside for a buyer who understands this corridor. Comparable C/LI zoned parcels with equivalent SR-167 corridor access in Renton trade at a significant premium. Auburn's completed Environmental Impact Statement eliminates additional SEPA review, and city development fees have been frozen since 2009. <strong>The building is an additional asset, offered as-is.</strong></p>
       </div>
     </div>
 
@@ -336,24 +338,25 @@ body{
           <button class="acc-btn" onclick="toggleAcc(this)">
             <div class="acc-btn-l">
               <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="22" height="13" rx="1"/><path d="M5 6V4a1 1 0 011-1h12a1 1 0 011 1v2"/><line x1="12" y1="12" x2="12" y2="16"/></svg></div>
-              <div><div class="acc-title">Detached Garage</div><span class="acc-sub">Two-bay high-clearance, roll-up doors, electricity, full-length workbench</span></div>
+              <div><div class="acc-title">Detached Garage</div><span class="acc-sub">Three-bay high-clearance, two roll-up doors, electricity, full-length workbench</span></div>
             </div>
             <span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="acc-body"><div class="acc-inner">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;">
-              <div>
-                <img src="Garage.jpg" alt="Two-bay detached garage with high-clearance roll-up doors" style="width:100%;height:240px;object-fit:cover;object-position:center;display:block;border:1px solid var(--border);">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;" class="garage-inner">
+              <div class="garage-img-wrap">
+                <img src="Garage.jpg" alt="Three-bay detached garage with two high-clearance roll-up doors" style="width:100%;height:240px;object-fit:cover;object-position:center;display:block;border:1px solid var(--border);">
               </div>
               <div>
                 <p class="t-body" style="margin-bottom:1rem;">Historically used to store a boat, full-size truck, and multiple snowmobiles simultaneously. Ceiling height well exceeds standard residential clearance. Operational today without improvement.</p>
                 <ul class="garage-specs">
                   <li><span class="chk">&#10003;</span> High open-beam ceiling, oversized vehicle clearance</li>
+                  <li><span class="chk">&#10003;</span> Three bays — two on the left, one on the right</li>
                   <li><span class="chk">&#10003;</span> Two full-width roll-up doors</li>
                   <li><span class="chk">&#10003;</span> Electrical service installed</li>
                   <li><span class="chk">&#10003;</span> Full-length workbench along one wall</li>
                   <li><span class="chk">&#10003;</span> Two barred security windows</li>
-                  <li><span class="chk">&#10003;</span> Semi-truck-capable parking immediately adjacent</li>
+                  <li><span class="chk">&#10003;</span> Large truck delivery access immediately adjacent</li>
                   <li><span class="chk">&#10003;</span> Small loading dock at rear of main building</li>
                   <li><span class="chk">&#10003;</span> Retainable under most redevelopment scenarios</li>
                 </ul>
@@ -429,7 +432,7 @@ body{
           <button class="acc-btn" onclick="toggleAcc(this)">
             <div class="acc-btn-l">
               <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-              <div><div class="acc-title">Freight Access &amp; Vehicle Logistics</div><span class="acc-sub">SR-167 corridor, semi-truck-capable access, airport proximity, bypass routing</span></div>
+              <div><div class="acc-title">Freight Access &amp; Vehicle Logistics</div><span class="acc-sub">SR-167 corridor, large truck delivery access, airport proximity, bypass routing</span></div>
             </div>
             <span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
@@ -439,7 +442,7 @@ body{
               <tr><td>SR-167 Access</td><td class="hi">~1 block, primary Green River Valley freight arterial</td></tr>
               <tr><td>Highway 18</td><td>Direct via SR-167 interchange</td></tr>
               <tr><td>I-5</td><td>~5 miles via SR-167 or Hwy 18</td></tr>
-              <tr><td>Semi-truck-capable parking</td><td class="hi">Confirmed, side lot accommodates semi-trucks and dump trucks</td></tr>
+              <tr><td>Large truck delivery</td><td class="hi">Side lot accommodates large delivery trucks and dump trucks; semi-trucks are restricted from Auburn side streets</td></tr>
               <tr><td>Loading dock</td><td>Small dock at rear of main building, see photo below</td></tr>
               <tr><td>Rail crossing bypass</td><td class="hi">Multiple routes bypass BNSF crossing and downtown congestion</td></tr>
               <tr><td>Auburn Municipal Airport</td><td>~2 miles &middot; General aviation &middot; 5,000 ft runway</td></tr>
@@ -464,9 +467,6 @@ body{
               <ul class="disc-grid">
                 <li>Roof requires replacement, active leaks present</li>
                 <li>Post and pier foundation</li>
-                <li>Electrical panel outdated, not updated</li>
-                <li>Interior stairs require rebuilding</li>
-                <li>Water service not currently connected, infrastructure present</li>
                 <li>Several windows boarded, vandalism damage</li>
                 <li>Upper apartment bathroom located on ground floor</li>
               </ul>
@@ -654,7 +654,7 @@ body{
         <div class="tl-item"><span class="tl-date">1911</span><div class="tl-title">Building Constructed</div><p class="tl-body">Part of the final wave of downtown wood-frame commercial construction between 1910 and 1913. Original fir floors, high wood plank ceilings, and moldings were installed, all remaining intact today, concealed beneath later improvements. The Nuzum family, prominent Auburn real estate developers, held the block-long parcel before subdivision.</p></div>
         <div class="tl-item"><span class="tl-date">1920s&ndash;1930s</span><div class="tl-title">Lodging Era, Railroad Workers</div><p class="tl-body">The 1930 Census confirms the building operated as a rooming house for single men employed by the Northern Pacific Railroad. The Depression years were hard on Auburn's merchant community, though rail traffic sustained the block's basic economy.</p></div>
         <div class="tl-item"><span class="tl-date">1940s</span><div class="tl-title">Community Grocery</div><p class="tl-body">The building became the central community grocery for East and West Main residents. A 1942 grocery receipt recovered from within the building confirms active WWII-era operation. Japanese immigrant farmers from the surrounding valley, who supplied the store with produce, were forcibly relocated to internment camps in 1942, permanently reshaping Auburn's agricultural economy.</p></div>
-        <div class="tl-item"><span class="tl-date">1940&ndash;1954</span><div class="tl-title">Jones Family, From Renter to Owner</div><p class="tl-body">The 1940 Census lists Frederick Jones as head of household at 504 West Main, renting at $20/month, occupation listed as retail salesman. By the 1950 Census he is recorded as owner and proprietor. The block became informally known as the Jones Block, a designation that survives in local historical photographs to this day.</p></div>
+        <div class="tl-item"><span class="tl-date">1940&ndash;1954</span><div class="tl-title">Jones Family, From Renter to Owner</div><p class="tl-body">The 1940 Federal Census documents Frederick Jones as head of household at 504 West Main, renting at $20/month, occupation listed as retail salesman. He appears on Sheet 3A, Line 1 of Enumeration District 17-2, King County, Auburn Precinct — the first name on the page for this address. By the 1950 Census he is recorded as owner and proprietor. The block became informally known as the Jones Block, a designation that survives in local historical photographs to this day. Frederick Jones is the father of the current owners.</p></div>
         <div class="tl-item"><span class="tl-date">Undated Discovery</span><div class="tl-title">Artifacts of Continuous Occupation</div><p class="tl-body">Antique bottles, old tools, and historical photographs were recovered from beneath the building, physical evidence of its continuous use across multiple generations. Newspapers dated 1955 were found within the structure. A 1942 grocery receipt confirms active wartime operation.</p></div>
         <div class="tl-item"><span class="tl-date">1954&ndash;2020</span><div class="tl-title">House of Vacuums, 66 Years</div><p class="tl-body">The building's longest single-use chapter. The large red-lettered sign became a neighborhood landmark along West Main for generations. Continuous commercial operation through March 2020 — closed during the Covid-19 shutdown — confirms sustained utility as a working storefront across Auburn's most significant commercial transitions.</p></div>
         <div class="tl-item"><span class="tl-date">Now</span><div class="tl-title">Offered for Redevelopment</div><p class="tl-body">The building is offered as-is. Primary value is the parcel, the corridor position, and the retained garage. For a buyer with preservation intent, the physical and archival record supports National Register candidacy and access to federal Historic Tax Credits.</p></div>
@@ -669,10 +669,6 @@ body{
       <div class="reg-box">
         <h3>Federal Historic Tax Credit, 20% of Qualified Rehabilitation Expenditures</h3>
         <p>This building's documented provenance, census-verified ownership chain, physical artifact recovery, 113 years of continuous use, and 1911 construction within a documented commercial wave, positions it as a viable National Register of Historic Places candidate. Listing unlocks the federal 20% Historic Tax Credit on qualified rehabilitation expenditures, state preservation grants, and potential marketing value for hospitality, residential, or professional conversion. The White River Valley Museum in Auburn holds archival materials relevant to any nomination process.</p>
-      </div>
-      <div style="margin-top:1.75rem;">
-        <img src="Garage.jpg" alt="Exterior of 504 West Main Street showing House of Vacuums sign" style="width:100%;max-height:400px;object-fit:cover;border:1px solid var(--border);display:block;">
-        <span class="t-mono" style="display:block;margin-top:.48rem;">504 West Main Street &middot; Auburn, WA &middot; House of Vacuums Signage &middot; SR-167 Corridor Visible</span>
       </div>
     </div>
   </div>
@@ -742,17 +738,10 @@ function toggleAcc(btn){
   const wasOpen=btn.classList.contains('open');
   document.querySelectorAll('.acc-btn').forEach(b=>b.classList.remove('open'));
   document.querySelectorAll('.acc-body').forEach(b=>b.classList.remove('open'));
-  if(!wasOpen){
-    btn.classList.add('open');
-    body.classList.add('open');
-    setTimeout(()=>{
-      const top=btn.getBoundingClientRect().top+window.scrollY-80;
-      window.scrollTo({top:top,behavior:'smooth'});
-    },30);
-  }
+  if(!wasOpen){btn.classList.add('open');body.classList.add('open');}
 }
 function sharePage(){
-  const data={title:'504 West Main Street \u00b7 Auburn, WA \u00b7 $550,000',text:'0.20-acre C/LI parcel, SR-167 corridor, semi-truck-capable parking, two-bay high-clearance garage. Offered as-is.',url:window.location.href};
+  const data={title:'504 West Main Street \u00b7 Auburn, WA \u00b7 $550,000',text:'0.20-acre C/LI parcel, SR-167 corridor, large truck delivery access, three-bay high-clearance garage. Offered as-is.',url:window.location.href};
   if(navigator.share){navigator.share(data).catch(()=>fallbackShare());}
   else{fallbackShare();}
 }
