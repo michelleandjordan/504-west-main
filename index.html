@@ -115,7 +115,7 @@ body{
 .acc-caret{color:var(--accent);flex-shrink:0;transition:transform .2s ease;line-height:1;display:flex;align-items:center;gap:.4rem;}
 .acc-caret svg{width:13px;height:13px;}
 .acc-btn.open .acc-caret{transform:rotate(180deg);}
-.acc-body{display:none;padding:0 1.5rem 1.75rem;background:var(--off-white);border-top:1px solid var(--border);}
+.acc-body{display:none;padding:0 1.5rem 1.75rem;background:var(--off-white);border-top:1px solid var(--border);overflow:hidden;}
 .acc-body.open{display:block;}
 .acc-inner{padding-top:1.5rem;}
 
@@ -260,7 +260,7 @@ body{
   .hist-intro{padding:1.75rem 1.5rem;}
   .footer-inner{grid-template-columns:1fr;gap:2rem;}
   .foot-agent{border-left:none;padding-left:0;border-top:1px solid rgba(255,255,255,.08);padding-top:2rem;}
-  .thesis,.credit-highlight{padding:1.75rem;}
+  .thesis,.credit-highlight{padding:1.25rem 1rem;}
 }
 @media(max-width:500px){
   .metrics-bar{grid-template-columns:repeat(2,1fr);}
