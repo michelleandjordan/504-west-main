@@ -121,6 +121,7 @@ body{
 
 /* DATA TABLE */
 .dt{width:100%;border-collapse:collapse;}
+.dt-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
 .dt td{padding:.58rem .75rem .58rem 0;border-bottom:1px solid var(--border);font-family:'Manrope',sans-serif;font-size:.86rem;letter-spacing:.005em;vertical-align:top;line-height:1.55;}
 .dt tr:last-child td{border-bottom:none;}
 .dt td:first-child{color:var(--text-secondary);font-weight:400;width:40%;padding-right:1.5rem;}
@@ -241,7 +242,7 @@ body{
 .sticky-btn{display:flex;align-items:center;gap:.45rem;padding:0 1.4rem;border:none;background:transparent;border-left:1px solid rgba(255,255,255,.12);color:var(--white);cursor:pointer;text-decoration:none;font-family:'Manrope',sans-serif;font-weight:600;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;transition:background .15s;white-space:nowrap;}
 .sticky-btn:hover{background:rgba(255,255,255,.1);}
 .sticky-btn svg{width:15px;height:15px;flex-shrink:0;}
-@media(max-width:600px){.sticky-price{display:none;}.sticky-btn span.btn-label{display:none;}.sticky-btn{padding:0 1.1rem;}.sticky-address{padding:0 1rem;}}
+@media(max-width:600px){.sticky-price{display:none;}.sticky-btn span.btn-label{display:none;}.sticky-btn{padding:0 1.3rem;flex:1;justify-content:center;}.sticky-address{padding:0 1rem;}}
 
 /* RESPONSIVE */
 @media(max-width:800px){
@@ -379,7 +380,7 @@ body{
             <span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="acc-body"><div class="acc-inner">
-            <table class="dt">
+            <div class="dt-wrap"><table class="dt">
               <tr><td>Parcel Number</td><td>192105-9237</td></tr>
               <tr><td>Legal Description</td><td>Auburn W 65 ft of E 130 ft of N 134 ft of NW&frac14; of SE&frac14; Less St</td></tr>
               <tr><td>Lot Size</td><td>8,710 SF &nbsp;/&nbsp; 0.20 Acres</td></tr>
@@ -392,7 +393,7 @@ body{
               <tr><td>Annual Tax (2024)</td><td class="hi">$3,160</td></tr>
               <tr><td>Current Assessment</td><td>$250,200</td></tr>
               <tr><td>Terms</td><td>Cash or Conventional &middot; Building offered as-is</td></tr>
-            </table>
+            </table></div>
           </div></div>
         </div>
 
@@ -409,21 +410,21 @@ body{
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;">
               <div>
                 <p style="font-family:'Manrope',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:.7rem;">Ground Floor, Commercial</p>
-                <table class="dt">
+                <div class="dt-wrap"><table class="dt">
                   <tr><td>Use</td><td>Retail / light industrial / office</td></tr>
                   <tr><td>Ceiling</td><td>Drop ceiling installed; original high wood plank ceiling intact above, undisturbed since original construction</td></tr>
                   <tr><td>Flooring</td><td>Original fir floors beneath current surface</td></tr>
                   <tr><td>Entry</td><td>West Main Street frontage</td></tr>
-                </table>
+                </table></div>
               </div>
               <div>
                 <p style="font-family:'Manrope',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:.7rem;">Upper Floor, Apartment</p>
-                <table class="dt">
+                <div class="dt-wrap"><table class="dt">
                   <tr><td>Layout</td><td>Kitchen, living area, bedroom, closet</td></tr>
                   <tr><td>Bathroom</td><td>Located on ground floor</td></tr>
                   <tr><td>Water</td><td>Not currently connected; infrastructure present</td></tr>
                   <tr><td>Potential</td><td>Live/work, rental income, owner-operator</td></tr>
-                </table>
+                </table></div>
                 <div style="margin-top:1rem;"><img src="Upstairs.jpg" alt="Upper apartment vaulted ceiling and built-in storage" style="width:100%;max-height:220px;object-fit:cover;border:1px solid var(--border);display:block;"><span class="t-mono" style="display:block;margin-top:.38rem;color:var(--text-tertiary);">Upper apartment &middot; Vaulted ceiling &middot; Built-in storage</span></div>
               </div>
             </div>
@@ -442,7 +443,7 @@ body{
           </button>
           <div class="acc-body"><div class="acc-inner">
             <p class="t-body" style="margin-bottom:1.25rem;">Located one block from SR-167, Auburn's primary freight arterial serving the Green River Valley industrial corridor, the densest concentration of warehouse and distribution infrastructure in the Pacific Northwest. Amazon, IKEA, REI, Costco, UPS, and FedEx regional distribution operations all run this corridor. The property currently serves as an informal rest stop for commercial drivers. Auburn Municipal Airport is approximately two miles away, providing general aviation access with a 5,000-foot runway.</p>
-            <table class="dt">
+            <div class="dt-wrap"><table class="dt">
               <tr><td>SR-167 Access</td><td class="hi">~1 block, primary Green River Valley freight arterial</td></tr>
               <tr><td>Highway 18</td><td>Direct via SR-167 interchange</td></tr>
               <tr><td>I-5</td><td>~5 miles via SR-167 or Hwy 18</td></tr>
@@ -451,7 +452,7 @@ body{
               <tr><td>Rail crossing bypass</td><td class="hi">Multiple routes bypass BNSF crossing and downtown congestion</td></tr>
               <tr><td>Auburn Municipal Airport</td><td>~2 miles &middot; General aviation &middot; 5,000 ft runway</td></tr>
               <tr><td>Port of Tacoma</td><td>~30 miles via I-5 South</td></tr>
-            </table>
+            </table></div>
             <div style="margin-top:1.25rem;"><img src="Loading-Dock.jpg" alt="Rear entry and loading dock at 504 W Main Street" style="width:100%;max-height:240px;object-fit:cover;object-position:center center;border:1px solid var(--border);display:block;"><span class="t-mono" style="display:block;margin-top:.42rem;color:var(--text-tertiary);">Rear of building &middot; Small loading dock</span></div>
           </div></div>
         </div>
@@ -554,13 +555,13 @@ body{
                 <div class="credit-stat"><span class="credit-stat-desc" style="font-size:.8rem;border:none;padding:0;max-width:220px;line-height:1.6;">Physical evidence: 1942 grocery receipt, 1955 newspapers, antique bottles, tools, and historical photographs recovered from beneath the building</span></div>
               </div>
             </div>
-            <table class="dt" style="margin-top:.5rem;">
+            <div class="dt-wrap"><table class="dt" style="margin-top:.5rem;">
               <tr><td>Federal Historic Tax Credit</td><td class="hi">20% credit on qualified rehabilitation expenditures</td></tr>
               <tr><td>Washington State Credit</td><td>Additional state-level credits may apply, verify with preservation consultant</td></tr>
               <tr><td>Grant eligibility</td><td>State and local preservation grants available upon listing</td></tr>
               <tr><td>Archival resource</td><td>White River Valley Museum, Auburn, holds relevant local historical materials</td></tr>
               <tr><td>Physical evidence</td><td>1942 grocery receipt, 1955 newspapers, antique bottles, tools, and historical photographs recovered from beneath the building</td></tr>
-            </table>
+            </table></div>
             <p class="t-body" style="margin-top:.85rem;font-style:italic;">Historic designation eligibility requires independent professional assessment. Engage a preservation architect or SHPO consultant prior to acquisition if pursuing this avenue.</p>
           </div></div>
         </div>
@@ -576,7 +577,7 @@ body{
           </button>
           <div class="acc-body"><div class="acc-inner">
             <p class="t-body" style="margin-bottom:1.25rem;">The property is within walking distance of Auburn Sounder Station, providing direct daily rail service to Seattle (~33 minutes) and Tacoma (~20 minutes). The Interurban Trail, a fully paved multi-use regional path running the length of the Green River Valley, connects Auburn directly to Renton and beyond, serving bicycle and motorcycle commuters as an alternative to SR-167. Together these corridors position the site as viable for transit-oriented residential or mixed-use development with genuine commuter appeal.</p>
-            <table class="dt">
+            <div class="dt-wrap"><table class="dt">
               <tr><td>Sounder Rail</td><td class="hi">~0.2 mi walk, Seattle ~33 min, Tacoma ~20 min</td></tr>
               <tr><td>Interurban Trail</td><td class="hi">Bike / motorcycle corridor, connects Auburn to Renton, runs Green River Valley</td></tr>
               <tr><td>SR-167</td><td>~1 block, direct freeway access north to Seattle, south to Tacoma</td></tr>
@@ -584,7 +585,7 @@ body{
               <tr><td>Seattle CBD</td><td>~20 mi via rail or highway &middot; ~33 min Sounder</td></tr>
               <tr><td>Tacoma CBD</td><td>~35 mi via SR-167 / I-5</td></tr>
               <tr><td>SEA-TAC Airport</td><td>~12 mi via SR-167 North &middot; ~15 min off-peak</td></tr>
-            </table>
+            </table></div>
           </div></div>
         </div>
 
@@ -642,7 +643,7 @@ body{
         <h2 class="t-heading" style="margin-top:.45rem;">Auburn's West Main Street Block</h2>
       </div>
       <div class="photo-grid" style="grid-template-columns:1fr 1fr;">
-        <div class="photo-cell"><img src="Auburn_WA_Main_Street_1920.jpg" alt="Auburn Main Street circa 1920s showing commercial block"><div class="photo-cap"><span class="t-mono" style="font-size:.52rem;color:rgba(255,255,255,.82);">Auburn Main Street &middot; ca. 1920s</span></div></div>
+        <div class="photo-cell"><img src="Auburn_WA_Main_Street_1920.jpg" alt="Auburn Main Street circa 1920s showing commercial block"><div class="photo-cap"><span class="t-mono" style="font-size:.52rem;color:rgba(255,255,255,.82);">Auburn Main Street &middot; 1920s</span></div></div>
         <div class="photo-cell"><img src="Auburn_WA_Main_Street_May_22_1901.jpg" alt="Auburn Main Street May 22 1901 with rail crossing sign"><div class="photo-cap"><span class="t-mono" style="font-size:.52rem;color:rgba(255,255,255,.82);">Auburn Main Street &middot; May 22, 1901 &middot; Rail Crossing Foreground</span></div></div>
       </div>
       <p class="t-mono" style="margin-top:.55rem;color:var(--text-tertiary);">Historical images courtesy of published sources and the White River Valley Museum, Auburn, WA. All rights reserved by respective owners.</p>
