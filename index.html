@@ -47,9 +47,9 @@ body{
 .header-asis{display:block;margin-top:.28rem;}
 
 /* TABS */
-.tab-btn{font-family:'Manrope',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.88rem 2rem;border:none;background:transparent;color:var(--text-tertiary);cursor:pointer;border-bottom:2px solid transparent;transition:color .15s,border-color .15s,background .15s;position:relative;top:1px;}
-.tab-btn:hover{color:var(--ink);}
-.tab-btn.active{color:var(--white);background:var(--accent);border-bottom-color:var(--accent);}
+.tab-btn{font-family:'Manrope',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.88rem 2rem;border:none;background:var(--accent);color:var(--white);cursor:pointer;border-bottom:2px solid transparent;transition:color .15s,border-color .15s,background .15s;position:relative;top:1px;}
+.tab-btn:hover{opacity:.85;}
+.tab-btn.active{color:var(--ink);background:transparent;border-bottom-color:var(--accent);}
 
 /* PANELS */
 .tab-panel{display:none;}.tab-panel.active{display:block;animation:panelIn .16s ease both;}
