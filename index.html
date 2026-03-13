@@ -112,10 +112,10 @@ body{
 .acc-icon svg{width:14px;height:14px;}
 .acc-title{font-family:'Manrope',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);line-height:1.25;}
 .acc-sub{font-family:'Manrope',sans-serif;font-weight:400;font-size:.74rem;letter-spacing:.005em;text-transform:none;color:var(--text-tertiary);display:block;margin-top:.12rem;}
-.acc-caret{color:var(--accent);flex-shrink:0;transition:transform .2s ease;line-height:1;display:flex;align-items:center;gap:.4rem;font-family:'Manrope',sans-serif;font-weight:700;font-size:.6rem;letter-spacing:.1em;}
-.acc-caret svg{width:18px;height:18px;}
+.acc-caret{color:var(--accent);flex-shrink:0;line-height:1;display:flex;align-items:center;gap:.4rem;font-family:'Manrope',sans-serif;font-weight:700;font-size:.6rem;letter-spacing:.1em;}
+.acc-caret svg{width:18px;height:18px;transition:transform .2s ease;}
 .acc-caret .caret-label{text-transform:uppercase;}
-.acc-btn.open .acc-caret{transform:rotate(180deg);}
+.acc-btn.open .acc-caret svg{transform:rotate(180deg);}
 .acc-body{display:none;padding:0 1.5rem 1.75rem;background:var(--off-white);border-top:1px solid var(--border);overflow:hidden;}
 .acc-body.open{display:block;}
 .acc-inner{padding-top:1.5rem;}
