@@ -99,7 +99,7 @@ body{
 .chk{color:var(--accent);font-weight:700;flex-shrink:0;}
 
 /* ACCORDIONS */
-.accordion-group{margin-top:1.75rem;}
+.accordion-group{margin-top:1.75rem;overflow-anchor:none;}
 .accordion-item{border:1px solid var(--border);margin-bottom:-1px;}
 .accordion-item:first-child{border-radius:2px 2px 0 0;}
 .accordion-item:last-child{border-radius:0 0 2px 2px;margin-bottom:0;}
@@ -745,7 +745,7 @@ function toggleAcc(btn){
   document.querySelectorAll('.acc-body').forEach(b=>b.classList.remove('open'));
   if(!wasOpen){btn.classList.add('open');body.classList.add('open');}
   btn.blur();
-  requestAnimationFrame(()=>window.scrollTo(0,scrollY));
+  requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo(0,scrollY)));
 }
 function sharePage(){
   const data={title:'504 West Main Street \u00b7 Auburn, WA \u00b7 $550,000',text:'0.20-acre C/LI parcel, SR-167 corridor, large truck delivery access, three-bay high-clearance garage. Offered as-is.',url:window.location.href};
