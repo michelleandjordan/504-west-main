@@ -736,7 +736,7 @@ function switchTab(name,btn){
   document.getElementById('tab-'+name).classList.add('active');
   btn.classList.add('active');
   btn.blur();
-  const tabBar=document.querySelector('.tab-bar');
+  const tabBar=document.querySelector('.tab-nav');
   const top=tabBar.getBoundingClientRect().top+window.scrollY-8;
   requestAnimationFrame(()=>window.scrollTo({top:top,behavior:'smooth'}));
   if(name==='investment'&&!window._mapDone)loadLeafletThenMap();
