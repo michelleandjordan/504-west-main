@@ -765,6 +765,7 @@ function loadLeafletThenMap(){
   document.head.appendChild(s);
 }
 window._mapDone=false;
+document.addEventListener('DOMContentLoaded',function(){loadLeafletThenMap();});
 function initMap(){
   if(window._mapDone||!window.L)return;
   window._mapDone=true;
